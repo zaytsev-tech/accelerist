@@ -7,6 +7,7 @@ export const theme = {
     blue: '#2baee0',
     grayLight: '#F8F8F8',
     grayDark: '#737373',
+    grayBorder: '#E8E8E8',
     blueSecond: '#CAF0FF',
   },
   typography,
