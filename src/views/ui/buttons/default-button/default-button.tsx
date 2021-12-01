@@ -21,4 +21,12 @@ const Button = styled.button`
   border-radius: 6px;
   font-weight: 600;
   border: none;
+
+  &:hover {
+    background: ${({ theme: { colors } }) => colors.blueHover};
+  }
+
+  &:focus {
+    background: ${({ theme: { colors } }) => colors.blueFocus};
+  }
 `;

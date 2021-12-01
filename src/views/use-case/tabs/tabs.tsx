@@ -32,6 +32,7 @@ const Container = styled.div`
   height: 40px;
   margin: 0 auto;
   margin-top: 27px;
+  display: inline-block;
 `;
 
 const Input = styled.input`

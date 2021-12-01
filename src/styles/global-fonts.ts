@@ -1,7 +1,7 @@
 import { createGlobalStyle } from 'styled-components';
 
-import GothamRounded from '../fonts/Gotham-Rounded-Medium.woff';
-import Rubik from '../fonts/rubik-v14-latin-regular.woff';
+import GothamRounded from '../assets/fonts/Gotham-Rounded-Medium.woff';
+import Rubik from '../assets/fonts/rubik-v14-latin-regular.woff';
 
 export const GlobalFonts = createGlobalStyle`
 @font-face {

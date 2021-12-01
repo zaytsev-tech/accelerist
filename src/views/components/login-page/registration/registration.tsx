@@ -1,4 +1,5 @@
 import { Field, Form } from 'react-final-form';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { DefaultButton } from '../../../ui/buttons/default-button';
@@ -10,9 +11,10 @@ const initialValue = {
 };
 
 export const Registration = () => {
+  const navigate = useNavigate();
   return (
     <Form
-      onSubmit={(value) => console.log(value)}
+      onSubmit={() => navigate('/dashboard')}
       initialValues={initialValue}
       render={({ handleSubmit }) => (
         <>
@@ -46,7 +48,6 @@ export const Registration = () => {
           <Submit onClick={handleSubmit}>
             <DefaultButton title="Registration" />
           </Submit>
-          <AfterText>or continue with</AfterText>
         </>
       )}
     />
@@ -81,10 +82,4 @@ const Policy = styled.div`
 const Bold = styled.span`
   font-weight: 500;
   color: ${({ theme: { colors } }) => colors.black};
-`;
-
-const AfterText = styled.p`
-  ${({ theme: { typography } }) => typography.body.footnote};
-  color: ${({ theme: { colors } }) => colors.grayDark};
-  margin-top: 40px;
 `;

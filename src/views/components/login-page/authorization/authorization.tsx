@@ -1,7 +1,9 @@
 import { Field, Form } from 'react-final-form';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { DefaultButton } from '../../../ui/buttons/default-button';
+import { CheckBox } from '../../../ui/checkbox';
 import { Input } from '../../../ui/input';
 
 const initialValue = {
@@ -10,9 +12,10 @@ const initialValue = {
 };
 
 export const Authorization = () => {
+  const navigate = useNavigate();
   return (
     <Form
-      onSubmit={(value) => console.log(value)}
+      onSubmit={() => navigate('/dashboard')}
       initialValues={initialValue}
       render={({ handleSubmit }) => (
         <>
@@ -33,13 +36,20 @@ export const Authorization = () => {
               <>
                 <Label>Password</Label>
                 <FormInput type="password" value={value} onChange={onChange} />
+                <ControlPass>
+                  <Remember
+                    className="Remember"
+                    title="Remember"
+                    onClick={() => console.log('Remember')}
+                  />
+                  <ForgotPass>Forgot Password?</ForgotPass>
+                </ControlPass>
               </>
             )}
           />
           <Submit onClick={handleSubmit}>
             <DefaultButton title="Login" />
           </Submit>
-          <AfterText>or continue with</AfterText>
         </>
       )}
     />
@@ -48,7 +58,6 @@ export const Authorization = () => {
 
 const FormInput = styled(Input)`
   margin: 0 auto;
-  margin-bottom: 24px;
 `;
 
 const Submit = styled.div`
@@ -60,12 +69,28 @@ const Submit = styled.div`
 const Label = styled.label`
   ${({ theme: { typography } }) => typography.body.footnote};
   color: ${({ theme: { colors } }) => colors.grayDark};
+  margin-top: 24px;
   margin-bottom: 4px;
   display: flex;
 `;
 
-const AfterText = styled.p`
+const ControlPass = styled.div`
+  flex-direction: row;
+  margin-bottom: 61px;
+`;
+
+const Remember = styled(CheckBox)`
+  text-align: left;
+  margin-top: 12px;
+  display: inline-block;
+  width: 67%;
+
+  @media (max-width: 600px) {
+    width: 50%;
+  }
+`;
+
+const ForgotPass = styled.a`
   ${({ theme: { typography } }) => typography.body.footnote};
-  color: ${({ theme: { colors } }) => colors.grayDark};
-  margin-top: 40px;
+  cursor: pointer;
 `;

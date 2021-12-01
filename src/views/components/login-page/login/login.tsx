@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 
-import BgImage from '../../../../images/homedark.png';
+import BgImage from '../../../../assets/images/homedark.png';
 import { theme } from '../../../../styles';
-import { LogoIcon } from '../../../ui/icons';
-import { Tabs } from '../../../ui/tabs';
+import { LogoIcon, LogoIn } from '../../../ui/icons';
+import { Tabs } from '../../../use-case/tabs';
 
 export const Login = () => {
   return (
@@ -15,6 +15,12 @@ export const Login = () => {
         <LoginForm>
           <Welcome>Welcome to Accelerist</Welcome>
           <Tabs />
+          <Footer>
+            <AfterText>or continue with</AfterText>
+            <LinkIn>
+              <Icon className="Icon" width={24} height={24} />
+            </LinkIn>
+          </Footer>
         </LoginForm>
       </Body>
     </Page>
@@ -23,7 +29,12 @@ export const Login = () => {
 
 const Page = styled.div`
   margin: 0 auto;
+  text-align: center;
   width: 100%;
+
+  @media (max-width: 600px) {
+    width: auto;
+  }
 `;
 
 const Body = styled.div`
@@ -32,6 +43,19 @@ const Body = styled.div`
     url(${BgImage});
   background-size: 100%;
   height: 900px;
+
+  @media (min-height: 1024px) {
+    height: 1300px;
+    background-size: cover;
+  }
+  @media (max-height: 1250px) {
+    background-size: cover;
+  }
+`;
+
+const AfterText = styled.p`
+  ${({ theme: { typography } }) => typography.body.footnote};
+  color: ${({ theme: { colors } }) => colors.grayDark};
 `;
 
 const Header = styled.div`
@@ -52,10 +76,29 @@ const LoginForm = styled.div`
   border-radius: 6px;
   width: 454px;
   height: 630px;
+
+  @media (max-width: 600px) {
+    width: 97%;
+  }
 `;
 
 const Welcome = styled.div`
   ${({ theme: { typography } }) => typography.body.headline};
   text-align: center;
   margin-top: 40px;
+`;
+
+const Footer = styled.div`
+  margin-top: 40px;
+`;
+
+const Icon = styled(LogoIn)`
+  border: 10px solid ${({ theme: { colors } }) => colors.grayLight};
+  border-radius: 100%;
+`;
+
+const LinkIn = styled.a`
+  margin-top: 34px;
+  display: block;
+  cursor: pointer;
 `;
