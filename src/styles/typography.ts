@@ -3,6 +3,7 @@ import { css } from 'styled-components';
 export const typography = {
   body: {
     logoTitle: css`
+      margin: 0;
       font-family: 'Gotham Rounded';
       font-style: normal;
       font-weight: 500;
@@ -13,6 +14,7 @@ export const typography = {
       color: #fff;
     `,
     headline: css`
+      margin: 0;
       font-family: Rubik;
       font-style: normal;
       font-weight: 600;
@@ -21,19 +23,30 @@ export const typography = {
       color: #122434;
     `,
     body: css`
+      margin: 0;
       font-family: Rubik;
       font-style: normal;
-      font-weight: normal;
+      font-weight: 600;
       font-size: 16px;
       line-height: 155%;
       color: #122434;
     `,
     footnote: css`
+      margin: 0;
       font-family: Rubik;
       font-style: normal;
       font-weight: normal;
       font-size: 12px;
       line-height: 150%;
+    `,
+    footnoteSelect: css`
+      margin: 0;
+      font-family: Rubik;
+      font-style: normal;
+      font-weight: 600;
+      font-size: 12px;
+      line-height: 150%;
+      color: #122434;
     `,
   },
 };
