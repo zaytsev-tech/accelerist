@@ -8,7 +8,7 @@ import { Reports } from '../../use-case/reports';
 export const Dashboard = () => {
   return (
     <Page>
-      <Navigation />
+      <Navigation titlePage="Dashboard" />
       <Header>Dashboard</Header>
       <Content>
         <Prospecting>

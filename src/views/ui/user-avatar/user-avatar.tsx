@@ -1,20 +1,16 @@
 import { FC } from 'react';
 import styled from 'styled-components';
 
+import { useInitials } from '../../hooks';
+
 interface AvatarProps {
   name: string;
 }
 
 export const UserAvatar: FC<AvatarProps> = ({ name }) => {
-  const initials = name.split(' ');
   return (
     <Container>
-      <p>
-        {initials.reduce((prev, curr) => {
-          prev += curr.substr(0, 1);
-          return prev;
-        }, '')}
-      </p>
+      <p>{useInitials(name)}</p>
     </Container>
   );
 };

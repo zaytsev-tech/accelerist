@@ -3,14 +3,14 @@ import styled from 'styled-components';
 
 interface NavItemProps {
   title: string;
-  active?: boolean;
+  active?: string;
 }
 
-export const NavItem: FC<NavItemProps> = ({ title, active = false }) => {
-  return (
-    <>
-      {active ? <ItemActive>{title}</ItemActive> : <ItemInactive>{title}</ItemInactive>}
-    </>
+export const NavItem: FC<NavItemProps> = ({ title, active = '' }) => {
+  return title === active ? (
+    <ItemActive>{title}</ItemActive>
+  ) : (
+    <ItemInactive>{title}</ItemInactive>
   );
 };
 

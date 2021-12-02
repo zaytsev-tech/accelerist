@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import styled, { ThemeContext } from 'styled-components';
 
 import { Counter } from '../../ui/counter';
-import { ArrowRight } from '../../ui/icons';
+import { IconArrowRight } from '../../ui/icons';
 import { LastLogin } from '../last-login';
 
 export const Reports = () => {
@@ -23,7 +23,7 @@ export const Reports = () => {
         <Title>Prospect Navigator</Title>
         <GotoBlock>
           <p>Go to page</p>
-          <ArrowRight width={10} height={18} color={theme.colors.grayDark} />
+          <IconArrowRight width={10} height={18} color={theme.colors.grayDark} />
         </GotoBlock>
       </ProspectNavigator>
       <LastLogin />

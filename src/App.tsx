@@ -4,9 +4,10 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 
-import { GlobalFonts, theme } from './styles';
+import { GlobalFonts, GlobalStyles, theme } from './styles';
 import { Dashboard } from './views/components/dashboard';
 import { Login } from './views/components/login-page/login';
+import { Search } from './views/components/search';
 
 function App() {
   return (
@@ -15,10 +16,12 @@ function App() {
         <ThemeProvider theme={theme}>
           <Routes>
             <Route path="dashboard" element={<Dashboard />} />
+            <Route path="search" element={<Search />} />
             <Route path="/" element={<Login />} />
           </Routes>
         </ThemeProvider>
         <GlobalFonts />
+        <GlobalStyles />
       </Router>
     </>
   );

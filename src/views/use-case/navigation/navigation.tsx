@@ -1,22 +1,31 @@
-import { useContext } from 'react';
+import { FC, useContext } from 'react';
+import { Link } from 'react-router-dom';
 import styled, { ThemeContext } from 'styled-components';
 
 import { IconSearch, LogoIcon } from '../../ui/icons';
 import { NavItem } from '../../ui/nav-item';
 
-export const Navigation = () => {
+interface NavigationProps {
+  titlePage: string;
+}
+
+export const Navigation: FC<NavigationProps> = ({ titlePage }) => {
   const theme = useContext(ThemeContext);
   return (
     <Header>
       <Icon className={Icon} width={170} height={40} color={theme.colors.black} />
       <NavItems>
         <ul>
-          <NavItem title="Dashboard" active={true} />
-          <NavItem title="Audience" />
-          <NavItem title="Pricing" />
-          <NavItem title="Prospecting" />
-          <NavItem title="ROI" />
-          <NavItem title="Upgrade Membership" />
+          <Link to="/dashboard">
+            <NavItem title="Dashboard" active={titlePage} />
+          </Link>
+          <Link to="/search">
+            <NavItem title="Search" active={titlePage} />
+          </Link>
+          <NavItem title="Pricing" active={titlePage} />
+          <NavItem title="Prospecting" active={titlePage} />
+          <NavItem title="ROI" active={titlePage} />
+          <NavItem title="Upgrade Membership" active={titlePage} />
         </ul>
       </NavItems>
       <Search>
