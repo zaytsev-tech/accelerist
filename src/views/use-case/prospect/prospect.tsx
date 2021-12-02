@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 
+import { Counter } from '../../ui/counter';
 import { FilterItem } from '../../ui/filter-item';
 import { UserAvatar } from '../../ui/user-avatar';
 
@@ -18,10 +19,7 @@ export const Prospect = () => {
         </FiltersContainer>
       </Filters>
       <Cells>
-        <Cell>
-          <Title>№ of Prospects Available</Title>
-          <Count>230</Count>
-        </Cell>
+        <Counter title="№ of Prospects Available" count={230} />
       </Cells>
       <UserInfo>
         <UserAvatar name="Alex Zaytsev" />
@@ -77,22 +75,9 @@ const Cells = styled.div`
   text-align: center;
 `;
 
-const Cell = styled.div`
-  width: 100%;
-  background: ${({ theme: { colors } }) => colors.grayCell};
-  border-radius: 4px;
-  padding-top: 4px;
-  padding-bottom: 4px;
-`;
-
 const Title = styled.p`
   ${({ theme: { typography } }) => typography.body.footnote};
   color: ${({ theme: { colors } }) => colors.grayDark};
-`;
-
-const Count = styled.div`
-  ${({ theme: { typography } }) => typography.body.headline};
-  margin-top: 8px;
 `;
 
 const UserInfo = styled.div`

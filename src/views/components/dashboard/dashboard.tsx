@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { CardFavorite } from '../../use-case/card-favorite';
 import { Navigation } from '../../use-case/navigation';
 import { Prospect } from '../../use-case/prospect';
+import { Reports } from '../../use-case/reports';
 
 export const Dashboard = () => {
   return (
@@ -20,18 +21,27 @@ export const Dashboard = () => {
             <Prospect />
           </Prospects>
         </Prospecting>
-        <Favorites>
-          <Heading>
-            <TitleHeading>Favorites</TitleHeading>
-            <SeeMore>see more</SeeMore>
-          </Heading>
-          <Cards>
-            <CardFavorite />
-            <CardFavorite />
-            <CardFavorite />
-            <CardFavorite />
-          </Cards>
-        </Favorites>
+        <Section>
+          <HalfSection>
+            <Heading>
+              <TitleHeading>Favorites</TitleHeading>
+              <SeeMore>see more</SeeMore>
+            </Heading>
+            <Cards>
+              <CardFavorite />
+              <CardFavorite />
+              <CardFavorite />
+              <CardFavorite />
+            </Cards>
+          </HalfSection>
+          <HalfSection>
+            <Heading>
+              <TitleHeading>Reports</TitleHeading>
+              <SeeMore>see more</SeeMore>
+            </Heading>
+            <Reports />
+          </HalfSection>
+        </Section>
       </Content>
     </Page>
   );
@@ -89,17 +99,23 @@ const Prospects = styled.div`
   margin: 0;
   margin-top: 16px;
   display: flex;
+  justify-content: space-between;
 
   & > div {
-    margin-right: 24px;
-    width: 49%;
+    width: 45.5%;
   }
 `;
 
-const Favorites = styled.div`
+const Section = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+
+const HalfSection = styled.div`
   margin: 0;
   margin-top: 40px;
-  width: 50%;
+  width: 48.5%;
+  display: inline-block;
 `;
 
 const Cards = styled.div`
@@ -108,9 +124,9 @@ const Cards = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  justify-content: space-between;
 
   & > div {
-    margin-right: 24px;
-    width: 38%;
+    width: 41%;
   }
 `;

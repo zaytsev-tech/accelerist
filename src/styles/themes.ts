@@ -10,7 +10,6 @@ export const theme = {
     blueHeader: '#D4F3FF',
     blueInputHeader: '#F3FCFF',
     grayLight: '#F8F8F8',
-    grayCell: '#F9F9F9',
     grayDark: '#737373',
     grayBorder: '#E8E8E8',
     grayCheckbox: '#BFBFBF',

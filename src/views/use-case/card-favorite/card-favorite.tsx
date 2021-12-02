@@ -23,7 +23,6 @@ export const CardFavorite = () => {
 const Container = styled.div`
   background: ${({ theme: { colors } }) => colors.white};
   border-radius: 6px;
-  margin-right: 24px;
   margin-bottom: 15px;
   padding: 24px;
 `;
