@@ -38,6 +38,8 @@ export const Search = () => {
           <CardOrganization />
           <CardOrganization />
           <CardOrganization />
+          <CardOrganization />
+          <CardOrganization />
         </Cards>
       </Content>
     </Page>
@@ -67,7 +69,11 @@ const Header = styled.div`
 
 const Content = styled.div`
   background: ${({ theme: { colors } }) => colors.grayBorder};
-  padding: 32px 284px 0px 60px;
+  padding: 32px 18% 0px 60px;
+
+  @media (max-width: 1024px) {
+    padding: 32px;
+  }
 `;
 
 const SearchContainer = styled.div`
@@ -75,6 +81,10 @@ const SearchContainer = styled.div`
   position: relative;
   margin-right: 30%;
   flex-grow: 3;
+
+  @media (max-width: 1024px) {
+    margin-right: 0;
+  }
 `;
 
 const InputSearch = styled.input`
@@ -103,6 +113,14 @@ const Settings = styled.div`
   margin-top: 26px;
   width: 30%;
   justify-content: space-between;
+
+  @media (max-width: 1024px) {
+    width: 40%;
+  }
+
+  @media (max-width: 768px) {
+    width: 50%;
+  }
 `;
 
 const HeaderItems = styled.div`

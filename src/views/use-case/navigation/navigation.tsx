@@ -2,7 +2,7 @@ import { FC, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import styled, { ThemeContext } from 'styled-components';
 
-import { IconSearch, LogoIcon } from '../../ui/icons';
+import { IconBurger, IconSearch, LogoIcon } from '../../ui/icons';
 import { NavItem } from '../../ui/nav-item';
 
 interface NavigationProps {
@@ -36,6 +36,7 @@ export const Navigation: FC<NavigationProps> = ({ titlePage }) => {
         <Avatar />
         <Username>No name</Username>
       </User>
+      <Burger width={24} height={24} color={theme.colors.black} />
     </Header>
   );
 };
@@ -51,11 +52,21 @@ const Header = styled.div`
     padding-top: 20px;
     padding-bottom: 20px;
   }
+
+  @media (max-width: 1024px) {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
 `;
 
 const NavItems = styled.div`
   ${({ theme: { typography } }) => typography.body.footnote};
   display: inline-block;
+
+  @media (max-width: 1024px) {
+    display: none;
+  }
 `;
 
 const Icon = styled(LogoIcon)`
@@ -68,6 +79,10 @@ const Search = styled.div`
   vertical-align: text-bottom;
   position: relative;
   line-height: 150%;
+
+  @media (max-width: 1024px) {
+    display: none;
+  }
 `;
 
 const InputSearch = styled.input`
@@ -90,6 +105,10 @@ const User = styled.div`
   margin: 0;
   display: inline-flex;
   float: right;
+
+  @media (max-width: 1024px) {
+    display: none;
+  }
 `;
 
 const Avatar = styled.div`
@@ -105,4 +124,12 @@ const Username = styled.p`
   ${({ theme: { typography } }) => typography.body.footnote};
   display: block;
   margin-top: 10%;
+`;
+
+const Burger = styled(IconBurger)`
+  display: none;
+
+  @media (max-width: 1024px) {
+    display: block;
+  }
 `;

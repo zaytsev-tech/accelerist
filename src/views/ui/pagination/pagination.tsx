@@ -19,6 +19,14 @@ const Container = styled.div`
   width: 7%;
   justify-content: space-between;
 
+  @media (max-width: 1024px) {
+    width: 10%;
+  }
+
+  @media (max-width: 768px) {
+    width: 15%;
+  }
+
   & > svg {
     cursor: pointer;
   }

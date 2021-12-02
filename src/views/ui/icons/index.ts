@@ -7,3 +7,5 @@ export { IconSettings } from './settings';
 export { IconClose } from './close';
 export { IconAddFolder } from './add-folder';
 export { IconExport } from './export';
+export { IconHeart } from './heart';
+export { IconBurger } from './burger';
