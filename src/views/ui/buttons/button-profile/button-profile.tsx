@@ -1,8 +1,13 @@
+import { FC } from 'react';
 import styled from 'styled-components';
 
-export const ButtonProfile = () => {
+interface ButtonProfileProps {
+  onClick: () => void;
+}
+
+export const ButtonProfile: FC<ButtonProfileProps> = ({ onClick }) => {
   return (
-    <Container>
+    <Container onClick={onClick}>
       <p>Profile</p>
     </Container>
   );
@@ -15,6 +20,7 @@ const Container = styled.button`
   cursor: pointer;
   display: flex;
   align-items: center;
+  justify-content: center;
   border: 1px solid ${({ theme: { colors } }) => colors.blue};
   background-color: ${({ theme: { colors } }) => colors.white};
 

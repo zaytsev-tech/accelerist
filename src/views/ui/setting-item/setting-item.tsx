@@ -14,21 +14,21 @@ export const SettingItem: FC<SettingItemProp> = ({ type }) => {
     return (
       <Container>
         <IconExport width={20} height={20} color={theme.colors.blue} />
-        <Text>Export to Excel</Text>
+        <TextExport></TextExport>
       </Container>
     );
   } else if (type === 'Save') {
     return (
       <Container>
         <IconAddFolder width={22} height={20} color={theme.colors.blue} />
-        <Text>Save List</Text>
+        <TextSave></TextSave>
       </Container>
     );
   } else {
     return (
       <Container>
         <IconMail width={22} height={20} color={theme.colors.blue} />
-        <Text>Accelerist Support</Text>
+        <TextSupport></TextSupport>
       </Container>
     );
   }
@@ -44,4 +44,34 @@ const Text = styled.p`
   ${({ theme: { typography } }) => typography.footnote};
   margin-left: 9px;
   font-size: 12px;
+`;
+
+const TextSave = styled(Text)`
+  &:after {
+    content: 'Save List';
+
+    @media (max-width: 703px) {
+      content: 'Save';
+    }
+  }
+`;
+
+const TextSupport = styled(Text)`
+  &:after {
+    content: 'Accelerist Support';
+
+    @media (max-width: 703px) {
+      content: 'Support';
+    }
+  }
+`;
+
+const TextExport = styled(Text)`
+  &:after {
+    content: 'Export to Excel';
+
+    @media (max-width: 703px) {
+      content: 'Export';
+    }
+  }
 `;

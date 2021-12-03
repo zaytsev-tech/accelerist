@@ -58,6 +58,10 @@ const Header = styled.div`
     align-items: center;
     justify-content: space-between;
   }
+
+  @media (max-width: 703px) {
+    padding: 5%;
+  }
 `;
 
 const NavItems = styled.div`

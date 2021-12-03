@@ -27,6 +27,10 @@ const Container = styled.div`
     width: 15%;
   }
 
+  @media (max-width: 703px) {
+    display: none;
+  }
+
   & > svg {
     cursor: pointer;
   }

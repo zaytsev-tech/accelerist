@@ -65,6 +65,15 @@ const Header = styled.div`
   & > h3 {
     flex-grow: 1;
   }
+
+  @media (max-width: 703px) {
+    flex-direction: column;
+    align-items: flex-start;
+
+    & > h3 {
+      margin: 16px;
+    }
+  }
 `;
 
 const Content = styled.div`
@@ -84,6 +93,10 @@ const SearchContainer = styled.div`
 
   @media (max-width: 1024px) {
     margin-right: 0;
+  }
+
+  @media (max-width: 703px) {
+    width: 100%;
   }
 `;
 
@@ -120,6 +133,10 @@ const Settings = styled.div`
 
   @media (max-width: 768px) {
     width: 50%;
+  }
+
+  @media (max-width: 703px) {
+    width: 100%;
   }
 `;
 

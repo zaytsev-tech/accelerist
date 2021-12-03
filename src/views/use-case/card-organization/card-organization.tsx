@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router';
 import styled from 'styled-components';
 
 import image from '../../../assets/images/companies/beko.png';
@@ -6,6 +7,7 @@ import { ButtonProfile } from '../../ui/buttons/button-profile';
 import { CsrList } from '../../ui/csr-list';
 
 export const CardOrganization = () => {
+  const navigate = useNavigate();
   return (
     <Container>
       <MainBlock>
@@ -38,7 +40,7 @@ export const CardOrganization = () => {
       </MainBlock>
       <Buttons>
         <ButtonHeartEmpty />
-        <ButtonProfile />
+        <ButtonProfile onClick={() => navigate('corporate-profile')} />
       </Buttons>
     </Container>
   );
@@ -56,12 +58,20 @@ const Container = styled.div`
   margin-bottom: 24px;
   position: relative;
 
+  @media (max-width: 1375px) {
+    width: 40%;
+  }
+
   @media (max-width: 1024px) {
     width: 42%;
   }
 
   @media (max-width: 768px) {
     width: 40%;
+  }
+
+  @media (max-width: 703px) {
+    width: 100%;
   }
 `;
 
@@ -116,6 +126,10 @@ const Title = styled.p`
 const Description = styled.div`
   flex-grow: 4;
   margin-left: 5%;
+
+  @media (max-width: 703px) {
+    width: 50%;
+  }
 `;
 
 const Contacts = styled.div`
@@ -134,6 +148,10 @@ const Specifications = styled.div`
     flex-direction: column;
     align-items: flex-start;
     border: none;
+  }
+
+  @media (max-width: 703px) {
+    margin-top: 0px;
   }
 `;
 
@@ -178,6 +196,14 @@ const Revenue = styled.div`
 
   @media (max-width: 768px) {
     width: 60%;
+  }
+
+  @media (max-width: 703px) {
+    width: 100%;
+  }
+
+  @media (max-width: 330px) {
+    flex-direction: column;
   }
 `;
 
