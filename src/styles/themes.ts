@@ -1,3 +1,4 @@
+import { breakpoints } from './breakpoints';
 import { typography } from './typography';
 
 export const theme = {
@@ -20,4 +21,5 @@ export const theme = {
     red: '#F05658',
   },
   typography,
+  breakpoints,
 };

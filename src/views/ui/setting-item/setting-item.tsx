@@ -50,7 +50,7 @@ const TextSave = styled(Text)`
   &:after {
     content: 'Save List';
 
-    @media (max-width: 703px) {
+    @media (max-width: ${({ theme: { breakpoints } }) => breakpoints.body.mobile}) {
       content: 'Save';
     }
   }
@@ -60,7 +60,7 @@ const TextSupport = styled(Text)`
   &:after {
     content: 'Accelerist Support';
 
-    @media (max-width: 703px) {
+    @media (max-width: ${({ theme: { breakpoints } }) => breakpoints.body.mobile}) {
       content: 'Support';
     }
   }
@@ -70,7 +70,7 @@ const TextExport = styled(Text)`
   &:after {
     content: 'Export to Excel';
 
-    @media (max-width: 703px) {
+    @media (max-width: ${({ theme: { breakpoints } }) => breakpoints.body.mobile}) {
       content: 'Export';
     }
   }

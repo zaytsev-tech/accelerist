@@ -64,15 +64,16 @@ const Container = styled.div`
     width: 40%;
   }
 
-  @media (max-width: 1024px) {
+  @media (max-width: ${({ theme: { breakpoints } }) => breakpoints.body.tablet}) {
     width: 42%;
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: ${({ theme: { breakpoints } }) =>
+      breakpoints.body.tabletLowScreen}) {
     width: 40%;
   }
 
-  @media (max-width: 703px) {
+  @media (max-width: ${({ theme: { breakpoints } }) => breakpoints.body.mobile}) {
     width: 100%;
   }
 `;
@@ -90,7 +91,7 @@ const Avatar = styled.div`
   height: 137%;
   flex-grow: 1;
 
-  @media (max-width: 1024px) {
+  @media (max-width: ${({ theme: { breakpoints } }) => breakpoints.body.tablet}) {
     height: 94%;
   }
 `;
@@ -103,7 +104,7 @@ const Picture = styled.div`
   background-repeat: no-repeat;
   background-position: center;
 
-  @media (max-width: 768px) {
+  @media (max-width: ${({ theme: { breakpoints } }) => breakpoints.body.mobile}) {
     background-size: contain;
   }
 `;
@@ -129,7 +130,7 @@ const Description = styled.div`
   flex-grow: 4;
   margin-left: 5%;
 
-  @media (max-width: 703px) {
+  @media (max-width: ${({ theme: { breakpoints } }) => breakpoints.body.mobile}) {
     width: 50%;
   }
 `;
@@ -146,13 +147,13 @@ const Specifications = styled.div`
   justify-content: space-between;
   border-bottom: 1px solid ${({ theme: { colors } }) => colors.grayBorder};
 
-  @media (max-width: 1024px) {
+  @media (max-width: ${({ theme: { breakpoints } }) => breakpoints.body.tablet}) {
     flex-direction: column;
     align-items: flex-start;
     border: none;
   }
 
-  @media (max-width: 703px) {
+  @media (max-width: ${({ theme: { breakpoints } }) => breakpoints.body.mobile}) {
     margin-top: 0px;
   }
 `;
@@ -164,7 +165,7 @@ const CsrFocus = styled.div`
   padding-bottom: 12px;
   padding-right: 21px;
 
-  @media (max-width: 1024px) {
+  @media (max-width: ${({ theme: { breakpoints } }) => breakpoints.body.tablet}) {
     border: none;
   }
 `;
@@ -189,22 +190,23 @@ const Revenue = styled.div`
   padding-bottom: 12px;
   margin-top: 20px;
 
-  @media (max-width: 1024px) {
+  @media (max-width: ${({ theme: { breakpoints } }) => breakpoints.body.tablet}) {
     display: flex;
     justify-content: space-between;
     width: 40%;
     margin: 0;
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: ${({ theme: { breakpoints } }) => breakpoints.body.mobile}) {
     width: 60%;
   }
 
-  @media (max-width: 703px) {
+  @media (max-width: ${({ theme: { breakpoints } }) => breakpoints.body.mobile}) {
     width: 100%;
   }
 
-  @media (max-width: 330px) {
+  @media (max-width: ${({ theme: { breakpoints } }) =>
+      breakpoints.body.mobileLowScreen}) {
     flex-direction: column;
   }
 `;
@@ -215,14 +217,14 @@ const Buttons = styled.div`
   justify-content: space-between;
   margin-left: 29%;
 
-  @media (max-width: 1024px) {
+  @media (max-width: ${({ theme: { breakpoints } }) => breakpoints.body.tablet}) {
     margin-left: 0%;
     margin-top: 0px;
     display: flex;
     justify-content: space-between;
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: ${({ theme: { breakpoints } }) => breakpoints.body.mobile}) {
     button:last-child {
       width: 80%;
     }

@@ -49,18 +49,18 @@ const Header = styled.div`
   padding: 20px 60px;
   vertical-align: middle;
 
-  @media (max-width: 600px) {
+  @media (max-width: ${({ theme: { breakpoints } }) => breakpoints.body.mobile}) {
     padding-top: 20px;
     padding-bottom: 20px;
   }
 
-  @media (max-width: 1024px) {
+  @media (max-width: ${({ theme: { breakpoints } }) => breakpoints.body.tablet}) {
     display: flex;
     align-items: center;
     justify-content: space-between;
   }
 
-  @media (max-width: 703px) {
+  @media (max-width: ${({ theme: { breakpoints } }) => breakpoints.body.mobile}) {
     padding: 5%;
   }
 `;
@@ -69,7 +69,7 @@ const NavItems = styled.div`
   ${({ theme: { typography } }) => typography.body.footnote};
   display: inline-block;
 
-  @media (max-width: 1024px) {
+  @media (max-width: ${({ theme: { breakpoints } }) => breakpoints.body.tablet}) {
     display: none;
   }
 `;
@@ -85,7 +85,7 @@ const Search = styled.div`
   position: relative;
   line-height: 150%;
 
-  @media (max-width: 1024px) {
+  @media (max-width: ${({ theme: { breakpoints } }) => breakpoints.body.tablet}) {
     display: none;
   }
 `;
@@ -111,7 +111,7 @@ const User = styled.div`
   display: inline-flex;
   float: right;
 
-  @media (max-width: 1024px) {
+  @media (max-width: ${({ theme: { breakpoints } }) => breakpoints.body.tablet}) {
     display: none;
   }
 `;
@@ -134,7 +134,7 @@ const Username = styled.p`
 const Burger = styled(IconBurger)`
   display: none;
 
-  @media (max-width: 1024px) {
+  @media (max-width: ${({ theme: { breakpoints } }) => breakpoints.body.tablet}) {
     display: block;
   }
 `;

@@ -106,7 +106,7 @@ const Page = styled.div`
   margin: 0 auto;
   width: 100%;
 
-  @media (max-width: 600px) {
+  @media (max-width: ${({ theme: { breakpoints } }) => breakpoints.body.mobile}) {
     width: auto;
   }
 `;
@@ -118,7 +118,7 @@ const Header = styled.div`
   display: flex;
   align-items: center;
 
-  @media (max-width: 703px) {
+  @media (max-width: ${({ theme: { breakpoints } }) => breakpoints.body.mobile}) {
     flex-direction: column;
     align-items: flex-start;
   }
@@ -132,7 +132,7 @@ const HeaderText = styled.h3`
   flex-grow: 1;
   margin-left: 22px;
 
-  @media (max-width: 703px) {
+  @media (max-width: ${({ theme: { breakpoints } }) => breakpoints.body.mobile}) {
     margin: 16px;
   }
 `;
@@ -141,7 +141,7 @@ const Content = styled.div`
   background-color: ${({ theme: { colors } }) => colors.grayBorder};
   padding: 32px 18% 0px 60px;
 
-  @media (max-width: 1024px) {
+  @media (max-width: ${({ theme: { breakpoints } }) => breakpoints.body.tablet}) {
     padding: 32px;
   }
 `;
@@ -176,7 +176,7 @@ const Picture = styled.div`
   background-repeat: no-repeat;
   background-position: center;
 
-  @media (max-width: 768px) {
+  @media (max-width: ${({ theme: { breakpoints } }) => breakpoints.body.mobile}) {
     background-size: contain;
   }
 `;

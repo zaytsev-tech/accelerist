@@ -19,15 +19,15 @@ const Container = styled.div`
   width: 7%;
   justify-content: space-between;
 
-  @media (max-width: 1024px) {
+  @media (max-width: ${({ theme: { breakpoints } }) => breakpoints.body.tablet}) {
     width: 10%;
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: ${({ theme: { breakpoints } }) => breakpoints.body.mobile}) {
     width: 15%;
   }
 
-  @media (max-width: 703px) {
+  @media (max-width: ${({ theme: { breakpoints } }) => breakpoints.body.mobile}) {
     display: none;
   }
 
