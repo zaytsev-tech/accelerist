@@ -120,7 +120,7 @@ const Text = styled.p`
   ${({ theme: { typography } }) => typography.body.footnote};
 `;
 const Title = styled.p`
-  ${({ theme: { typography } }) => typography.body.body};
+  ${({ theme: { typography } }) => typography.body.bodySelect};
 `;
 
 const Description = styled.div`

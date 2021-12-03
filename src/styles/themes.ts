@@ -14,6 +14,7 @@ export const theme = {
     grayDark: '#737373',
     grayBgInput: '#F1F4F5',
     grayBorder: '#E8E8E8',
+    grayCorpHeader: '#F2F2F2',
     grayCheckbox: '#BFBFBF',
     blueSecond: '#CAF0FF',
     red: '#F05658',

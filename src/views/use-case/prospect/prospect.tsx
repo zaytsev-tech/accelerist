@@ -51,7 +51,7 @@ const Head = styled.div`
 `;
 
 const HeadText = styled.p`
-  ${({ theme: { typography } }) => typography.body.body};
+  ${({ theme: { typography } }) => typography.body.bodySelect};
   margin: 0;
   margin-bottom: 9px;
 `;

@@ -9,3 +9,6 @@ export { IconAddFolder } from './add-folder';
 export { IconExport } from './export';
 export { IconHeart } from './heart';
 export { IconBurger } from './burger';
+export { IconPlanet } from './planet';
+export { IconPhone } from './phone';
+export { IconMapPoint } from './map-point';
