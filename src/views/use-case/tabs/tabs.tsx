@@ -26,7 +26,7 @@ export const Tabs: FC = () => {
 };
 
 const Container = styled.div`
-  background: ${({ theme: { colors } }) => colors.grayLight};
+  background-color: ${({ theme: { colors } }) => colors.grayLight};
   border-radius: 6px;
   width: 75%;
   height: 40px;
@@ -42,7 +42,7 @@ const Input = styled.input`
     border: none;
     border-radius: 6px;
     color: ${({ theme: { colors } }) => colors.black};
-    background: ${({ theme: { colors } }) => colors.blueSecond};
+    background-color: ${({ theme: { colors } }) => colors.blueSecond};
     &:hover {
       color: ${({ theme: { colors } }) => colors.black};
     }

@@ -17,7 +17,7 @@ export const Counter: FC<CounterProps> = ({ title, count }) => {
 
 const Cell = styled.div`
   width: 100%;
-  background: ${({ theme: { colors } }) => colors.grayLight};
+  background-color: ${({ theme: { colors } }) => colors.grayLight};
   border-radius: 4px;
   padding-top: 4px;
   padding-bottom: 4px;

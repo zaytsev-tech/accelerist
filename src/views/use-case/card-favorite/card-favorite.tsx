@@ -22,7 +22,7 @@ export const CardFavorite: FC = () => {
 };
 
 const Container = styled.div`
-  background: ${({ theme: { colors } }) => colors.white};
+  background-color: ${({ theme: { colors } }) => colors.white};
   border-radius: 6px;
   margin-bottom: 15px;
   padding: 24px;

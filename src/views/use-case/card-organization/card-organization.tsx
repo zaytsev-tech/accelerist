@@ -49,7 +49,7 @@ export const CardOrganization: FC = () => {
 };
 
 const Container = styled.div`
-  background: ${({ theme: { colors } }) => colors.white};
+  background-color: ${({ theme: { colors } }) => colors.white};
   padding: 26px 32px;
   width: 44%;
   left: 0px;

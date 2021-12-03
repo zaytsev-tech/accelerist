@@ -61,7 +61,7 @@ const AfterText = styled.p`
 
 const Header = styled.div`
   ${({ theme: { typography } }) => typography.body.logoTitle};
-  background: ${({ theme: { colors } }) => colors.black};
+  background-color: ${({ theme: { colors } }) => colors.black};
   width: 100%;
   margin: 0 auto;
   text-align: center;
@@ -75,7 +75,7 @@ const Header = styled.div`
 `;
 
 const LoginForm = styled.div`
-  background: ${({ theme: { colors } }) => colors.white};
+  background-color: ${({ theme: { colors } }) => colors.white};
   margin: 0 auto;
   margin-top: 73px;
   display: block;

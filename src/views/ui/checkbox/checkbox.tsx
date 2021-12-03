@@ -41,7 +41,7 @@ const Container = styled.div`
     line-height: 15px;
     text-align: center;
     vertical-align: bottom;
-    background: ${({ theme: { colors } }) => colors.blueSecond};
+    background-color: ${({ theme: { colors } }) => colors.blueSecond};
     border-color: ${({ theme: { colors } }) => colors.blueSecond};
 
     @media (max-width: ${({ theme: { breakpoints } }) => breakpoints.body.mobile}) {

@@ -17,7 +17,7 @@ export const Input: FC<InputProps> = ({ value, onChange, className, type }) => {
 const Container = styled.input`
   width: 100%;
   border: 1px solid ${({ theme: { colors } }) => colors.grayBorder};
-  background: #ffffff;
+  background-color: ${({ theme: { colors } }) => colors.white};
   box-sizing: border-box;
   border-radius: 6px;
   padding: 10px 16px;

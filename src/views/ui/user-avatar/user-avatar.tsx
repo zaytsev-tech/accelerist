@@ -16,7 +16,7 @@ export const UserAvatar: FC<AvatarProps> = ({ name }) => {
 };
 
 const Container = styled.div`
-  background: ${({ theme: { colors } }) => colors.blueSecond};
+  background-color: ${({ theme: { colors } }) => colors.blueSecond};
   width: 40px;
   height: 40px;
   border-radius: 100%;
