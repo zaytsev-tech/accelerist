@@ -1,10 +1,11 @@
+import { FC } from 'react';
 import styled from 'styled-components';
 
 import { Counter } from '../../ui/counter';
 import { FilterItem } from '../../ui/filter-item';
 import { UserAvatar } from '../../ui/user-avatar';
 
-export const Prospect = () => {
+export const Prospect: FC = () => {
   return (
     <Container>
       <Head>
@@ -51,7 +52,7 @@ const Head = styled.div`
 `;
 
 const HeadText = styled.p`
-  ${({ theme: { typography } }) => typography.body.body};
+  ${({ theme: { typography } }) => typography.body.bodySelect};
   margin: 0;
   margin-bottom: 9px;
 `;

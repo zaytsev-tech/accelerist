@@ -1,3 +1,4 @@
+import { FC } from 'react';
 import styled from 'styled-components';
 
 import { CardFavorite } from '../../use-case/card-favorite';
@@ -5,7 +6,7 @@ import { Navigation } from '../../use-case/navigation';
 import { Prospect } from '../../use-case/prospect';
 import { Reports } from '../../use-case/reports';
 
-export const Dashboard = () => {
+export const Dashboard: FC = () => {
   return (
     <Page>
       <Navigation titlePage="Dashboard" />
@@ -51,7 +52,7 @@ const Page = styled.div`
   margin: 0 auto;
   width: 100%;
 
-  @media (max-width: 600px) {
+  @media (max-width: ${({ theme: { breakpoints } }) => breakpoints.body.mobile}) {
     width: auto;
   }
 `;
@@ -68,6 +69,11 @@ const Header = styled.h3`
 const Content = styled.div`
   background: ${({ theme: { colors } }) => colors.grayBorder};
   padding: 32px 284px 0px 60px;
+
+  @media (max-width: ${({ theme: { breakpoints } }) => breakpoints.body.mobile}) {
+    width: auto;
+    padding: 1%;
+  }
 `;
 
 const Prospecting = styled.div`

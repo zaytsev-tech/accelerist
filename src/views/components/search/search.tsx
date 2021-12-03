@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { FC, useContext } from 'react';
 import styled, { ThemeContext } from 'styled-components';
 
 import { IconClose, IconSearch, IconSettings } from '../../ui/icons';
@@ -7,13 +7,13 @@ import { SettingItem } from '../../ui/setting-item/setting-item';
 import { CardOrganization } from '../../use-case/card-organization';
 import { Navigation } from '../../use-case/navigation';
 
-export const Search = () => {
+export const Search: FC = () => {
   const theme = useContext(ThemeContext);
   return (
     <Page>
       <Navigation titlePage="Search" />
       <Header>
-        <h3>Search</h3>
+        <HeaderText>Search</HeaderText>
         <SearchContainer>
           <InputSearch placeholder="Search" />
           <Icons>
@@ -50,7 +50,7 @@ const Page = styled.div`
   margin: 0 auto;
   width: 100%;
 
-  @media (max-width: 600px) {
+  @media (max-width: ${({ theme: { breakpoints } }) => breakpoints.body.mobile}) {
     width: auto;
   }
 `;
@@ -62,17 +62,17 @@ const Header = styled.div`
   display: flex;
   align-items: center;
 
-  & > h3 {
-    flex-grow: 1;
-  }
-
-  @media (max-width: 703px) {
+  @media (max-width: ${({ theme: { breakpoints } }) => breakpoints.body.mobile}) {
     flex-direction: column;
     align-items: flex-start;
+  }
+`;
 
-    & > h3 {
-      margin: 16px;
-    }
+const HeaderText = styled.h3`
+  flex-grow: 1;
+
+  @media (max-width: ${({ theme: { breakpoints } }) => breakpoints.body.mobile}) {
+    margin: 16px;
   }
 `;
 
@@ -80,7 +80,7 @@ const Content = styled.div`
   background: ${({ theme: { colors } }) => colors.grayBorder};
   padding: 32px 18% 0px 60px;
 
-  @media (max-width: 1024px) {
+  @media (max-width: ${({ theme: { breakpoints } }) => breakpoints.body.tablet}) {
     padding: 32px;
   }
 `;
@@ -91,11 +91,11 @@ const SearchContainer = styled.div`
   margin-right: 30%;
   flex-grow: 3;
 
-  @media (max-width: 1024px) {
+  @media (max-width: ${({ theme: { breakpoints } }) => breakpoints.body.tablet}) {
     margin-right: 0;
   }
 
-  @media (max-width: 703px) {
+  @media (max-width: ${({ theme: { breakpoints } }) => breakpoints.body.mobile}) {
     width: 100%;
   }
 `;
@@ -118,7 +118,7 @@ const Icons = styled.div`
 `;
 
 const Title = styled.p`
-  ${({ theme: { typography } }) => typography.body.body};
+  ${({ theme: { typography } }) => typography.body.bodySelect};
 `;
 
 const Settings = styled.div`
@@ -127,15 +127,15 @@ const Settings = styled.div`
   width: 30%;
   justify-content: space-between;
 
-  @media (max-width: 1024px) {
+  @media (max-width: ${({ theme: { breakpoints } }) => breakpoints.body.tablet}) {
     width: 40%;
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: ${({ theme: { breakpoints } }) => breakpoints.body.mobile}) {
     width: 50%;
   }
 
-  @media (max-width: 703px) {
+  @media (max-width: ${({ theme: { breakpoints } }) => breakpoints.body.mobile}) {
     width: 100%;
   }
 `;

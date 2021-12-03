@@ -1,11 +1,11 @@
-import { useContext } from 'react';
+import { FC, useContext } from 'react';
 import styled, { ThemeContext } from 'styled-components';
 
 import { Counter } from '../../ui/counter';
 import { IconArrowRight } from '../../ui/icons';
 import { LastLogin } from '../last-login';
 
-export const Reports = () => {
+export const Reports: FC = () => {
   const theme = useContext(ThemeContext);
   return (
     <Container>
@@ -53,7 +53,7 @@ const BlockCounter = styled.div`
 `;
 
 const Title = styled.p`
-  ${({ theme: { typography } }) => typography.body.body};
+  ${({ theme: { typography } }) => typography.body.bodySelect};
   margin-bottom: 16px;
 `;
 

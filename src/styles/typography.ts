@@ -26,6 +26,15 @@ export const typography = {
       margin: 0;
       font-family: Rubik;
       font-style: normal;
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 155%;
+      color: #122434;
+    `,
+    bodySelect: css`
+      margin: 0;
+      font-family: Rubik;
+      font-style: normal;
       font-weight: 600;
       font-size: 16px;
       line-height: 155%;

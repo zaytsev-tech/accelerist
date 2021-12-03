@@ -1,7 +1,9 @@
+import { FC } from 'react';
 import { Field, Form } from 'react-final-form';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
+import { routes } from '../../../routes';
 import { DefaultButton } from '../../../ui/buttons/default-button';
 import { CheckBox } from '../../../ui/checkbox';
 import { Input } from '../../../ui/input';
@@ -11,11 +13,11 @@ const initialValue = {
   pass: '',
 };
 
-export const Authorization = () => {
+export const Authorization: FC = () => {
   const navigate = useNavigate();
   return (
     <Form
-      onSubmit={() => navigate('/dashboard')}
+      onSubmit={() => navigate(routes.dashboard.root)}
       initialValues={initialValue}
       render={({ handleSubmit }) => (
         <>
@@ -76,16 +78,19 @@ const Label = styled.label`
 
 const ControlPass = styled.div`
   flex-direction: row;
+  margin-top: 1%;
   margin-bottom: 61px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 `;
 
 const Remember = styled(CheckBox)`
   text-align: left;
-  margin-top: 12px;
   display: inline-block;
   width: 67%;
 
-  @media (max-width: 600px) {
+  @media (max-width: ${({ theme: { breakpoints } }) => breakpoints.body.mobile}) {
     width: 50%;
   }
 `;

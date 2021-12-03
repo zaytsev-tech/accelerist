@@ -1,8 +1,9 @@
+import { FC } from 'react';
 import styled from 'styled-components';
 
 import { CompanyAvatar } from '../../ui/company-avatar';
 
-export const CardFavorite = () => {
+export const CardFavorite: FC = () => {
   return (
     <Container>
       <CompanyInfo>

@@ -1,12 +1,14 @@
+import { FC } from 'react';
 import { useNavigate } from 'react-router';
 import styled from 'styled-components';
 
 import image from '../../../assets/images/companies/beko.png';
+import { routes } from '../../routes';
 import { ButtonHeartEmpty } from '../../ui/buttons/button-heart-empty';
 import { ButtonProfile } from '../../ui/buttons/button-profile';
 import { CsrList } from '../../ui/csr-list';
 
-export const CardOrganization = () => {
+export const CardOrganization: FC = () => {
   const navigate = useNavigate();
   return (
     <Container>
@@ -40,7 +42,7 @@ export const CardOrganization = () => {
       </MainBlock>
       <Buttons>
         <ButtonHeartEmpty />
-        <ButtonProfile onClick={() => navigate('corporate-profile')} />
+        <ButtonProfile onClick={() => navigate(routes.search.corporateProfile)} />
       </Buttons>
     </Container>
   );
@@ -62,15 +64,16 @@ const Container = styled.div`
     width: 40%;
   }
 
-  @media (max-width: 1024px) {
+  @media (max-width: ${({ theme: { breakpoints } }) => breakpoints.body.tablet}) {
     width: 42%;
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: ${({ theme: { breakpoints } }) =>
+      breakpoints.body.tabletLowScreen}) {
     width: 40%;
   }
 
-  @media (max-width: 703px) {
+  @media (max-width: ${({ theme: { breakpoints } }) => breakpoints.body.mobile}) {
     width: 100%;
   }
 `;
@@ -88,7 +91,7 @@ const Avatar = styled.div`
   height: 137%;
   flex-grow: 1;
 
-  @media (max-width: 1024px) {
+  @media (max-width: ${({ theme: { breakpoints } }) => breakpoints.body.tablet}) {
     height: 94%;
   }
 `;
@@ -101,7 +104,7 @@ const Picture = styled.div`
   background-repeat: no-repeat;
   background-position: center;
 
-  @media (max-width: 768px) {
+  @media (max-width: ${({ theme: { breakpoints } }) => breakpoints.body.mobile}) {
     background-size: contain;
   }
 `;
@@ -120,14 +123,14 @@ const Text = styled.p`
   ${({ theme: { typography } }) => typography.body.footnote};
 `;
 const Title = styled.p`
-  ${({ theme: { typography } }) => typography.body.body};
+  ${({ theme: { typography } }) => typography.body.bodySelect};
 `;
 
 const Description = styled.div`
   flex-grow: 4;
   margin-left: 5%;
 
-  @media (max-width: 703px) {
+  @media (max-width: ${({ theme: { breakpoints } }) => breakpoints.body.mobile}) {
     width: 50%;
   }
 `;
@@ -144,13 +147,13 @@ const Specifications = styled.div`
   justify-content: space-between;
   border-bottom: 1px solid ${({ theme: { colors } }) => colors.grayBorder};
 
-  @media (max-width: 1024px) {
+  @media (max-width: ${({ theme: { breakpoints } }) => breakpoints.body.tablet}) {
     flex-direction: column;
     align-items: flex-start;
     border: none;
   }
 
-  @media (max-width: 703px) {
+  @media (max-width: ${({ theme: { breakpoints } }) => breakpoints.body.mobile}) {
     margin-top: 0px;
   }
 `;
@@ -162,7 +165,7 @@ const CsrFocus = styled.div`
   padding-bottom: 12px;
   padding-right: 21px;
 
-  @media (max-width: 1024px) {
+  @media (max-width: ${({ theme: { breakpoints } }) => breakpoints.body.tablet}) {
     border: none;
   }
 `;
@@ -187,22 +190,23 @@ const Revenue = styled.div`
   padding-bottom: 12px;
   margin-top: 20px;
 
-  @media (max-width: 1024px) {
+  @media (max-width: ${({ theme: { breakpoints } }) => breakpoints.body.tablet}) {
     display: flex;
     justify-content: space-between;
     width: 40%;
     margin: 0;
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: ${({ theme: { breakpoints } }) => breakpoints.body.mobile}) {
     width: 60%;
   }
 
-  @media (max-width: 703px) {
+  @media (max-width: ${({ theme: { breakpoints } }) => breakpoints.body.mobile}) {
     width: 100%;
   }
 
-  @media (max-width: 330px) {
+  @media (max-width: ${({ theme: { breakpoints } }) =>
+      breakpoints.body.mobileLowScreen}) {
     flex-direction: column;
   }
 `;
@@ -213,14 +217,14 @@ const Buttons = styled.div`
   justify-content: space-between;
   margin-left: 29%;
 
-  @media (max-width: 1024px) {
+  @media (max-width: ${({ theme: { breakpoints } }) => breakpoints.body.tablet}) {
     margin-left: 0%;
     margin-top: 0px;
     display: flex;
     justify-content: space-between;
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: ${({ theme: { breakpoints } }) => breakpoints.body.mobile}) {
     button:last-child {
       width: 80%;
     }

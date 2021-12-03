@@ -10,7 +10,7 @@ export const DefaultButton: FC<DefaultButtonProps> = ({ title }) => {
 };
 
 const Button = styled.button`
-  ${({ theme: { typography } }) => typography.body.body};
+  ${({ theme: { typography } }) => typography.body.bodySelect};
   display: flex;
   width: 100%;
   flex-direction: column;
@@ -19,14 +19,13 @@ const Button = styled.button`
   background: ${({ theme: { colors } }) => colors.blue};
   color: ${({ theme: { colors } }) => colors.white};
   border-radius: 6px;
-  font-weight: 600;
   border: none;
 
   &:hover {
     background: ${({ theme: { colors } }) => colors.blueHover};
   }
 
-  &:focus {
+  &:active {
     background: ${({ theme: { colors } }) => colors.blueFocus};
   }
 `;

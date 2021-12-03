@@ -1,9 +1,9 @@
-import { useContext } from 'react';
+import { FC, useContext } from 'react';
 import styled, { ThemeContext } from 'styled-components';
 
 import { IconHeart } from '../../icons';
 
-export const ButtonHeartEmpty = () => {
+export const ButtonHeartEmpty: FC = () => {
   const theme = useContext(ThemeContext);
   return (
     <Block>

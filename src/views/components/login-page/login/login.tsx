@@ -1,3 +1,4 @@
+import { FC } from 'react';
 import styled from 'styled-components';
 
 import BgImage from '../../../../assets/images/homedark.png';
@@ -5,7 +6,7 @@ import { theme } from '../../../../styles';
 import { LogoIcon, LogoIn } from '../../../ui/icons';
 import { Tabs } from '../../../use-case/tabs';
 
-export const Login = () => {
+export const Login: FC = () => {
   return (
     <Page>
       <Header>
@@ -32,7 +33,7 @@ const Page = styled.div`
   text-align: center;
   width: 100%;
 
-  @media (max-width: 600px) {
+  @media (max-width: ${({ theme: { breakpoints } }) => breakpoints.body.mobile}) {
     width: auto;
   }
 `;
@@ -67,7 +68,7 @@ const Header = styled.div`
   padding-top: 27px;
   padding-bottom: 27px;
 
-  @media (max-width: 600px) {
+  @media (max-width: ${({ theme: { breakpoints } }) => breakpoints.body.mobile}) {
     padding-top: 20px;
     padding-bottom: 20px;
   }
@@ -82,7 +83,7 @@ const LoginForm = styled.div`
   width: 454px;
   height: 630px;
 
-  @media (max-width: 600px) {
+  @media (max-width: ${({ theme: { breakpoints } }) => breakpoints.body.mobile}) {
     width: 97%;
     margin-top: 10%;
   }

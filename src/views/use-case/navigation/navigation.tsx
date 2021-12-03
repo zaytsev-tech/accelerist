@@ -2,6 +2,7 @@ import { FC, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import styled, { ThemeContext } from 'styled-components';
 
+import { routes } from '../../routes';
 import { IconBurger, IconSearch, LogoIcon } from '../../ui/icons';
 import { NavItem } from '../../ui/nav-item';
 
@@ -16,10 +17,10 @@ export const Navigation: FC<NavigationProps> = ({ titlePage }) => {
       <Icon className={Icon} width={170} height={40} color={theme.colors.black} />
       <NavItems>
         <ul>
-          <Link to="/dashboard">
+          <Link to={routes.dashboard.root}>
             <NavItem title="Dashboard" active={titlePage} />
           </Link>
-          <Link to="/search">
+          <Link to={routes.search.root}>
             <NavItem title="Search" active={titlePage} />
           </Link>
           <NavItem title="Pricing" active={titlePage} />
@@ -48,18 +49,18 @@ const Header = styled.div`
   padding: 20px 60px;
   vertical-align: middle;
 
-  @media (max-width: 600px) {
+  @media (max-width: ${({ theme: { breakpoints } }) => breakpoints.body.mobile}) {
     padding-top: 20px;
     padding-bottom: 20px;
   }
 
-  @media (max-width: 1024px) {
+  @media (max-width: ${({ theme: { breakpoints } }) => breakpoints.body.tablet}) {
     display: flex;
     align-items: center;
     justify-content: space-between;
   }
 
-  @media (max-width: 703px) {
+  @media (max-width: ${({ theme: { breakpoints } }) => breakpoints.body.mobile}) {
     padding: 5%;
   }
 `;
@@ -68,7 +69,7 @@ const NavItems = styled.div`
   ${({ theme: { typography } }) => typography.body.footnote};
   display: inline-block;
 
-  @media (max-width: 1024px) {
+  @media (max-width: ${({ theme: { breakpoints } }) => breakpoints.body.tablet}) {
     display: none;
   }
 `;
@@ -84,7 +85,7 @@ const Search = styled.div`
   position: relative;
   line-height: 150%;
 
-  @media (max-width: 1024px) {
+  @media (max-width: ${({ theme: { breakpoints } }) => breakpoints.body.tablet}) {
     display: none;
   }
 `;
@@ -110,7 +111,7 @@ const User = styled.div`
   display: inline-flex;
   float: right;
 
-  @media (max-width: 1024px) {
+  @media (max-width: ${({ theme: { breakpoints } }) => breakpoints.body.tablet}) {
     display: none;
   }
 `;
@@ -133,7 +134,7 @@ const Username = styled.p`
 const Burger = styled(IconBurger)`
   display: none;
 
-  @media (max-width: 1024px) {
+  @media (max-width: ${({ theme: { breakpoints } }) => breakpoints.body.tablet}) {
     display: block;
   }
 `;
