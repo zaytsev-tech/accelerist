@@ -34,7 +34,7 @@ export const Reports: FC = () => {
 const Container = styled.div`
   border-radius: 6px;
   padding: 24px;
-  background: ${({ theme: { colors } }) => colors.white};
+  background-color: ${({ theme: { colors } }) => colors.white};
   margin-top: 20px;
   display: flex;
   flex-direction: row;
@@ -71,5 +71,5 @@ const GotoBlock = styled.div`
   justify-content: space-between;
   align-items: center;
   cursor: pointer;
-  background: ${({ theme: { colors } }) => colors.grayLight};
+  background-color: ${({ theme: { colors } }) => colors.grayLight};
 `;

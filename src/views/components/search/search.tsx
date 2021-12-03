@@ -77,8 +77,8 @@ const HeaderText = styled.h3`
 `;
 
 const Content = styled.div`
-  background: ${({ theme: { colors } }) => colors.grayBorder};
-  padding: 32px 18% 0px 60px;
+  background-color: ${({ theme: { colors } }) => colors.grayBorder};
+  padding: 32px 18% 10% 60px;
 
   @media (max-width: ${({ theme: { breakpoints } }) => breakpoints.body.tablet}) {
     padding: 32px;
@@ -101,7 +101,7 @@ const SearchContainer = styled.div`
 `;
 
 const InputSearch = styled.input`
-  background: ${({ theme: { colors } }) => colors.grayBgInput};
+  background-color: ${({ theme: { colors } }) => colors.grayBgInput};
   padding: 10px 24px;
   border-radius: 6px;
   width: 100%;

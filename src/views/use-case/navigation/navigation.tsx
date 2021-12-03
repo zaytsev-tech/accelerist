@@ -23,10 +23,15 @@ export const Navigation: FC<NavigationProps> = ({ titlePage }) => {
           <Link to={routes.search.root}>
             <NavItem title="Search" active={titlePage} />
           </Link>
-          <NavItem title="Pricing" active={titlePage} />
-          <NavItem title="Prospecting" active={titlePage} />
-          <NavItem title="ROI" active={titlePage} />
-          <NavItem title="Upgrade Membership" active={titlePage} />
+          <Link to={routes.favorites.root}>
+            <NavItem title="Favorites" active={titlePage} />
+          </Link>
+          <Link to={routes.prospects.root}>
+            <NavItem title="Prospects" active={titlePage} />
+          </Link>
+          <Link to={routes.accountingServices.root}>
+            <NavItem title="Services" active={titlePage} />
+          </Link>
         </ul>
       </NavItems>
       <Search>
@@ -43,7 +48,7 @@ export const Navigation: FC<NavigationProps> = ({ titlePage }) => {
 };
 
 const Header = styled.div`
-  background: ${({ theme: { colors } }) => colors.blueHeader};
+  background-color: ${({ theme: { colors } }) => colors.blueHeader};
   margin: 0 auto;
   text-align: left;
   padding: 20px 60px;
@@ -91,7 +96,7 @@ const Search = styled.div`
 `;
 
 const InputSearch = styled.input`
-  background: ${({ theme: { colors } }) => colors.blueInputHeader};
+  background-color: ${({ theme: { colors } }) => colors.blueInputHeader};
   padding: 10px 24px;
   border-radius: 6px;
   width: 100%;
@@ -117,7 +122,7 @@ const User = styled.div`
 `;
 
 const Avatar = styled.div`
-  background: ${({ theme: { colors } }) => colors.white};
+  background-color: ${({ theme: { colors } }) => colors.white};
   width: 36px;
   height: 36px;
   border-radius: 6px;

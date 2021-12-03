@@ -16,16 +16,16 @@ const Button = styled.button`
   flex-direction: column;
   align-items: center;
   padding: 12px;
-  background: ${({ theme: { colors } }) => colors.blue};
+  background-color: ${({ theme: { colors } }) => colors.blue};
   color: ${({ theme: { colors } }) => colors.white};
   border-radius: 6px;
   border: none;
 
   &:hover {
-    background: ${({ theme: { colors } }) => colors.blueHover};
+    background-color: ${({ theme: { colors } }) => colors.blueHover};
   }
 
   &:active {
-    background: ${({ theme: { colors } }) => colors.blueFocus};
+    background-color: ${({ theme: { colors } }) => colors.blueFocus};
   }
 `;

@@ -14,7 +14,7 @@ export const ButtonHeartEmpty: FC = () => {
 
 const Block = styled.button`
   border: 1px solid ${({ theme: { colors } }) => colors.grayBorder};
-  background: ${({ theme: { colors } }) => colors.white};
+  background-color: ${({ theme: { colors } }) => colors.white};
   border-radius: 6px;
   cursor: pointer;
   width: 40px;

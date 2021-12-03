@@ -139,7 +139,7 @@ const HeaderText = styled.h3`
 
 const Content = styled.div`
   background-color: ${({ theme: { colors } }) => colors.grayBorder};
-  padding: 32px 18% 0px 60px;
+  padding: 32px 18% 10% 60px;
 
   @media (max-width: ${({ theme: { breakpoints } }) => breakpoints.body.tablet}) {
     padding: 32px;

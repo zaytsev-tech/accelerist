@@ -12,3 +12,4 @@ export { IconBurger } from './burger';
 export { IconPlanet } from './planet';
 export { IconPhone } from './phone';
 export { IconMapPoint } from './map-point';
+export { IconPen } from './pen';

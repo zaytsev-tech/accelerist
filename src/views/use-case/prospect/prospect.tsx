@@ -44,7 +44,8 @@ const Container = styled.div`
   top: 0px;
   border-radius: 6px;
   padding: 24px;
-  background: ${({ theme: { colors } }) => colors.white};
+  margin-top: 24px;
+  background-color: ${({ theme: { colors } }) => colors.white};
 `;
 
 const Head = styled.div`
