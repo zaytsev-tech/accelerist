@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router';
 import styled from 'styled-components';
 
 import image from '../../../assets/images/companies/beko.png';
+import { routes } from '../../routes';
 import { ButtonHeartEmpty } from '../../ui/buttons/button-heart-empty';
 import { ButtonProfile } from '../../ui/buttons/button-profile';
 import { CsrList } from '../../ui/csr-list';
@@ -41,7 +42,7 @@ export const CardOrganization: FC = () => {
       </MainBlock>
       <Buttons>
         <ButtonHeartEmpty />
-        <ButtonProfile onClick={() => navigate('corporate-profile')} />
+        <ButtonProfile onClick={() => navigate(routes.search.corporateProfile)} />
       </Buttons>
     </Container>
   );

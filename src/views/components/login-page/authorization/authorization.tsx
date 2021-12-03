@@ -3,6 +3,7 @@ import { Field, Form } from 'react-final-form';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
+import { routes } from '../../../routes';
 import { DefaultButton } from '../../../ui/buttons/default-button';
 import { CheckBox } from '../../../ui/checkbox';
 import { Input } from '../../../ui/input';
@@ -16,7 +17,7 @@ export const Authorization: FC = () => {
   const navigate = useNavigate();
   return (
     <Form
-      onSubmit={() => navigate('/dashboard')}
+      onSubmit={() => navigate(routes.dashboard.root)}
       initialValues={initialValue}
       render={({ handleSubmit }) => (
         <>

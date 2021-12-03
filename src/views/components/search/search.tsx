@@ -13,7 +13,7 @@ export const Search: FC = () => {
     <Page>
       <Navigation titlePage="Search" />
       <Header>
-        <h3>Search</h3>
+        <HeaderText>Search</HeaderText>
         <SearchContainer>
           <InputSearch placeholder="Search" />
           <Icons>
@@ -62,17 +62,17 @@ const Header = styled.div`
   display: flex;
   align-items: center;
 
-  & > h3 {
-    flex-grow: 1;
-  }
-
   @media (max-width: 703px) {
     flex-direction: column;
     align-items: flex-start;
+  }
+`;
 
-    & > h3 {
-      margin: 16px;
-    }
+const HeaderText = styled.h3`
+  flex-grow: 1;
+
+  @media (max-width: 703px) {
+    margin: 16px;
   }
 `;
 

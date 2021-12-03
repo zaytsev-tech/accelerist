@@ -9,6 +9,7 @@ import { CorporateProfile } from './views/components/corporate-profile';
 import { Dashboard } from './views/components/dashboard';
 import { Login } from './views/components/login-page/login';
 import { Search } from './views/components/search';
+import { routes } from './views/routes';
 
 function App() {
   return (
@@ -16,9 +17,9 @@ function App() {
       <Router>
         <ThemeProvider theme={theme}>
           <Routes>
-            <Route path="dashboard" element={<Dashboard />} />
-            <Route path="search" element={<Search />} />
-            <Route path="/search/corporate-profile" element={<CorporateProfile />} />
+            <Route path={routes.dashboard.root} element={<Dashboard />} />
+            <Route path={routes.search.root} element={<Search />} />
+            <Route path={routes.search.corporateProfile} element={<CorporateProfile />} />
             <Route path="/" element={<Login />} />
           </Routes>
         </ThemeProvider>

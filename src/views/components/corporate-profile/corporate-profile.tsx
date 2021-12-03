@@ -1,7 +1,9 @@
 import { FC, useContext } from 'react';
+import { useNavigate } from 'react-router';
 import styled, { ThemeContext } from 'styled-components';
 
 import image from '../../../assets/images/companies/beko.png';
+import { routes } from '../../routes';
 import { DefaultButton } from '../../ui/buttons/default-button';
 import {
   IconArrowLeft,
@@ -14,12 +16,15 @@ import { Navigation } from '../../use-case/navigation';
 
 export const CorporateProfile: FC = () => {
   const theme = useContext(ThemeContext);
+  const navigate = useNavigate();
   return (
     <Page>
       <Navigation titlePage="Search" />
       <Header>
-        <IconArrowLeft width={13} height={22} color={theme.colors.black} />
-        <h3>Corporate Profile</h3>
+        <BackLink onClick={() => navigate(routes.search.root)}>
+          <IconArrowLeft width={13} height={22} color={theme.colors.black} />
+        </BackLink>
+        <HeaderText>Corporate Profile</HeaderText>
       </Header>
       <Content>
         <CorporateHeader>
@@ -113,18 +118,22 @@ const Header = styled.div`
   display: flex;
   align-items: center;
 
-  & > h3 {
-    flex-grow: 1;
-    margin-left: 22px;
-  }
-
   @media (max-width: 703px) {
     flex-direction: column;
     align-items: flex-start;
+  }
+`;
 
-    & > h3 {
-      margin: 16px;
-    }
+const BackLink = styled.a`
+  cursor: pointer;
+`;
+
+const HeaderText = styled.h3`
+  flex-grow: 1;
+  margin-left: 22px;
+
+  @media (max-width: 703px) {
+    margin: 16px;
   }
 `;
 

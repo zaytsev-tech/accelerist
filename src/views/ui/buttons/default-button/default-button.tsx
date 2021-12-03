@@ -25,7 +25,7 @@ const Button = styled.button`
     background: ${({ theme: { colors } }) => colors.blueHover};
   }
 
-  &:focus {
+  &:active {
     background: ${({ theme: { colors } }) => colors.blueFocus};
   }
 `;

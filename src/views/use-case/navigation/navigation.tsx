@@ -2,6 +2,7 @@ import { FC, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import styled, { ThemeContext } from 'styled-components';
 
+import { routes } from '../../routes';
 import { IconBurger, IconSearch, LogoIcon } from '../../ui/icons';
 import { NavItem } from '../../ui/nav-item';
 
@@ -16,10 +17,10 @@ export const Navigation: FC<NavigationProps> = ({ titlePage }) => {
       <Icon className={Icon} width={170} height={40} color={theme.colors.black} />
       <NavItems>
         <ul>
-          <Link to="/dashboard">
+          <Link to={routes.dashboard.root}>
             <NavItem title="Dashboard" active={titlePage} />
           </Link>
-          <Link to="/search">
+          <Link to={routes.search.root}>
             <NavItem title="Search" active={titlePage} />
           </Link>
           <NavItem title="Pricing" active={titlePage} />
