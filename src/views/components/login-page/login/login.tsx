@@ -66,6 +66,11 @@ const Header = styled.div`
   text-align: center;
   padding-top: 27px;
   padding-bottom: 27px;
+
+  @media (max-width: 600px) {
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
 `;
 
 const LoginForm = styled.div`
@@ -79,6 +84,12 @@ const LoginForm = styled.div`
 
   @media (max-width: 600px) {
     width: 97%;
+    margin-top: 10%;
+  }
+
+  @media (min-height: 1024px) {
+    width: 60%;
+    height: 50%;
   }
 `;
 
