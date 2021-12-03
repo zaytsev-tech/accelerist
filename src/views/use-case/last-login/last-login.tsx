@@ -1,8 +1,9 @@
+import { FC } from 'react';
 import styled from 'styled-components';
 
 import { UserAvatar } from '../../ui/user-avatar';
 
-export const LastLogin = () => {
+export const LastLogin: FC = () => {
   return (
     <Container>
       <Title>Last Login</Title>

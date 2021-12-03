@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { FC, useContext } from 'react';
 import styled, { ThemeContext } from 'styled-components';
 
 import { IconClose, IconSearch, IconSettings } from '../../ui/icons';
@@ -7,7 +7,7 @@ import { SettingItem } from '../../ui/setting-item/setting-item';
 import { CardOrganization } from '../../use-case/card-organization';
 import { Navigation } from '../../use-case/navigation';
 
-export const Search = () => {
+export const Search: FC = () => {
   const theme = useContext(ThemeContext);
   return (
     <Page>

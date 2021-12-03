@@ -1,3 +1,4 @@
+import { FC } from 'react';
 import styled from 'styled-components';
 
 import { CardFavorite } from '../../use-case/card-favorite';
@@ -5,7 +6,7 @@ import { Navigation } from '../../use-case/navigation';
 import { Prospect } from '../../use-case/prospect';
 import { Reports } from '../../use-case/reports';
 
-export const Dashboard = () => {
+export const Dashboard: FC = () => {
   return (
     <Page>
       <Navigation titlePage="Dashboard" />

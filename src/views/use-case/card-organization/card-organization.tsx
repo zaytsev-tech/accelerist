@@ -1,3 +1,4 @@
+import { FC } from 'react';
 import { useNavigate } from 'react-router';
 import styled from 'styled-components';
 
@@ -6,7 +7,7 @@ import { ButtonHeartEmpty } from '../../ui/buttons/button-heart-empty';
 import { ButtonProfile } from '../../ui/buttons/button-profile';
 import { CsrList } from '../../ui/csr-list';
 
-export const CardOrganization = () => {
+export const CardOrganization: FC = () => {
   const navigate = useNavigate();
   return (
     <Container>

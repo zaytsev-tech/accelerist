@@ -1,9 +1,9 @@
-import { useContext } from 'react';
+import { FC, useContext } from 'react';
 import styled, { ThemeContext } from 'styled-components';
 
 import { IconArrowLeft, IconArrowRight } from '../icons';
 
-export const Pagination = () => {
+export const Pagination: FC = () => {
   const theme = useContext(ThemeContext);
   return (
     <Container>

@@ -1,8 +1,9 @@
+import { FC } from 'react';
 import styled from 'styled-components';
 
 import nasa from '../../../assets/images/companies/nasa.png';
 
-export const CompanyAvatar = () => {
+export const CompanyAvatar: FC = () => {
   return <Container />;
 };
 

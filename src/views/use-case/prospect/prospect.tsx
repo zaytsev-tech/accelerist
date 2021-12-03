@@ -1,10 +1,11 @@
+import { FC } from 'react';
 import styled from 'styled-components';
 
 import { Counter } from '../../ui/counter';
 import { FilterItem } from '../../ui/filter-item';
 import { UserAvatar } from '../../ui/user-avatar';
 
-export const Prospect = () => {
+export const Prospect: FC = () => {
   return (
     <Container>
       <Head>

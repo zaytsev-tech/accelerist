@@ -1,11 +1,11 @@
-import { useContext } from 'react';
+import { FC, useContext } from 'react';
 import styled, { ThemeContext } from 'styled-components';
 
 import { Counter } from '../../ui/counter';
 import { IconArrowRight } from '../../ui/icons';
 import { LastLogin } from '../last-login';
 
-export const Reports = () => {
+export const Reports: FC = () => {
   const theme = useContext(ThemeContext);
   return (
     <Container>

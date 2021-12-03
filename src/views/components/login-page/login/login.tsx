@@ -1,3 +1,4 @@
+import { FC } from 'react';
 import styled from 'styled-components';
 
 import BgImage from '../../../../assets/images/homedark.png';
@@ -5,7 +6,7 @@ import { theme } from '../../../../styles';
 import { LogoIcon, LogoIn } from '../../../ui/icons';
 import { Tabs } from '../../../use-case/tabs';
 
-export const Login = () => {
+export const Login: FC = () => {
   return (
     <Page>
       <Header>

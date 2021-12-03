@@ -1,3 +1,4 @@
+import { FC } from 'react';
 import { Field, Form } from 'react-final-form';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
@@ -11,7 +12,7 @@ const initialValue = {
   pass: '',
 };
 
-export const Authorization = () => {
+export const Authorization: FC = () => {
   const navigate = useNavigate();
   return (
     <Form
