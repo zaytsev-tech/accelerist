@@ -1,8 +1,11 @@
 import { FC } from 'react';
 import { Field, Form } from 'react-final-form';
-import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router';
 import styled from 'styled-components';
 
+import { AuthData, Profile } from '../../../../store/user';
+import { loginRequest } from '../../../../store/user/actions';
 import { routes } from '../../../routes';
 import { DefaultButton } from '../../../ui/buttons/default-button';
 import { CheckBox } from '../../../ui/checkbox';
@@ -10,14 +13,21 @@ import { Input } from '../../../ui/input';
 
 const initialValue = {
   email: '',
-  pass: '',
+  password: '',
 };
 
 export const Authorization: FC = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
+  const token = useSelector((state: Profile) => state.user.isAuthorized);
+
+  const onSubmit = (value: AuthData) => {
+    dispatch(loginRequest(value));
+    if (token) navigate(routes.dashboard.root);
+  };
   return (
     <Form
-      onSubmit={() => navigate(routes.dashboard.root)}
+      onSubmit={onSubmit}
       initialValues={initialValue}
       render={({ handleSubmit }) => (
         <>
@@ -33,7 +43,7 @@ export const Authorization: FC = () => {
           />
           <Field
             type="password"
-            name="pass"
+            name="password"
             render={({ input: { value, onChange } }) => (
               <>
                 <Label>Password</Label>
@@ -49,8 +59,8 @@ export const Authorization: FC = () => {
               </>
             )}
           />
-          <Submit onClick={handleSubmit}>
-            <DefaultButton title="Login" />
+          <Submit>
+            <DefaultButton title="Login" onClick={handleSubmit} />
           </Submit>
         </>
       )}

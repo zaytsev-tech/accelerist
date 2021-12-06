@@ -7,7 +7,7 @@ export const userSlice = createSlice({
   initialState: initialProfile,
   reducers: {
     setLogin(state, action) {
-      return action.payload;
+      return { ...action.payload, isAuthorized: true };
     },
     setError(state, action) {
       return (state.error = action.payload);

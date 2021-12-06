@@ -1,7 +1,9 @@
 import { FC, useContext } from 'react';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styled, { ThemeContext } from 'styled-components';
 
+import { Profile, User } from '../../../store/user';
 import { routes } from '../../routes';
 import { IconBurger, IconSearch, LogoIcon } from '../../ui/icons';
 import { NavItem } from '../../ui/nav-item';
@@ -10,8 +12,13 @@ interface NavigationProps {
   titlePage: string;
 }
 
+interface UserProp {
+  user: Profile;
+}
+
 export const Navigation: FC<NavigationProps> = ({ titlePage }) => {
   const theme = useContext(ThemeContext);
+  const profile = useSelector((state: UserProp) => state.user.user);
   return (
     <Header>
       <Icon className={Icon} width={170} height={40} color={theme.colors.black} />
@@ -38,10 +45,12 @@ export const Navigation: FC<NavigationProps> = ({ titlePage }) => {
         <InputSearch placeholder="Search" />
         <Loupe className={Loupe} width={15} height={15} color={theme.colors.grayDark} />
       </Search>
-      <User>
+      <UserProfile>
         <Avatar />
-        <Username>No name</Username>
-      </User>
+        <Username>
+          {profile.firstName} {profile.lastName}
+        </Username>
+      </UserProfile>
       <Burger width={24} height={24} color={theme.colors.black} />
     </Header>
   );
@@ -111,7 +120,7 @@ const Loupe = styled(IconSearch)`
   left: 104%;
 `;
 
-const User = styled.div`
+const UserProfile = styled.div`
   margin: 0;
   display: inline-flex;
   float: right;

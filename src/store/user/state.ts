@@ -1,5 +1,5 @@
 export const initialProfile = {
-  accessToken: '0',
+  accessToken: '',
   error: '',
   user: {
     id: '0',
