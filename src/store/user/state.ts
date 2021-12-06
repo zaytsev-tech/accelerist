@@ -1,0 +1,21 @@
+export const initialProfile = {
+  accessToken: '0',
+  error: '',
+  user: {
+    id: '0',
+    email: 'user@example.com',
+    firstName: 'firstname',
+    lastName: 'lastname',
+    isAuthorized: false,
+    imported: false,
+    teamId: '0',
+    role: '0',
+    linkedinLink: null,
+    isReceivingNotifications: true,
+    avatarKey: null,
+    loggedInAt: '2021-12-04T18:06:58.334Z',
+    createdAt: '2021-07-23T08:14:15.185Z',
+    updatedAt: '2021-12-04T18:06:58.359Z',
+    deletedAt: null,
+  },
+};
