@@ -13,10 +13,13 @@ export const userSlice = createSlice({
       state.isAuthorized = Boolean(accessToken);
       state.error = '';
     },
+    setLogout() {
+      return initialProfile;
+    },
     setError(state, action) {
       state.error = action.payload;
     },
   },
 });
 
-export const { setLogin, setError } = userSlice.actions;
+export const { setLogin, setLogout, setError } = userSlice.actions;
