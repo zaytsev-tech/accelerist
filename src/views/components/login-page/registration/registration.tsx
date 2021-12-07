@@ -3,8 +3,8 @@ import { Field, Form } from 'react-final-form';
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 
-import { AuthData } from '../../../../store/user';
-import { regRequest } from '../../../../store/user/actions';
+import { AuthData } from '../../../../store/ducks/user';
+import { regRequest } from '../../../../store/ducks/user/actions';
 import { DefaultButton } from '../../../ui/buttons/default-button';
 import { Input } from '../../../ui/input';
 

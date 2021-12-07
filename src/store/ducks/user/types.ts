@@ -2,6 +2,7 @@ export interface Profile {
   accessToken: string;
   error: string;
   user: User;
+  isAuthorized: boolean;
 }
 
 export interface User {

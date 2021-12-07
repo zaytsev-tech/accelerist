@@ -1,12 +1,10 @@
 import { FC } from 'react';
 import { Field, Form } from 'react-final-form';
-import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router';
+import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 
-import { AuthData, Profile } from '../../../../store/user';
-import { loginRequest } from '../../../../store/user/actions';
-import { routes } from '../../../routes';
+import { AuthData } from '../../../../store/ducks/user';
+import { loginRequest } from '../../../../store/ducks/user/actions';
 import { DefaultButton } from '../../../ui/buttons/default-button';
 import { CheckBox } from '../../../ui/checkbox';
 import { Input } from '../../../ui/input';
@@ -18,13 +16,11 @@ const initialValue = {
 
 export const Authorization: FC = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const token = useSelector((state: Profile) => state.user.isAuthorized);
 
   const onSubmit = (value: AuthData) => {
     dispatch(loginRequest(value));
-    if (token) navigate(routes.dashboard.root);
   };
+
   return (
     <Form
       onSubmit={onSubmit}

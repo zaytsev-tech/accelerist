@@ -3,7 +3,8 @@ import persistReducer from 'redux-persist/es/persistReducer';
 import persistStore from 'redux-persist/es/persistStore';
 import storage from 'redux-persist/lib/storage';
 
-import { User } from '../user';
+import { CompanyData } from '../ducks/companies/types';
+import { User } from '../ducks/user';
 import { rootReducer, rootSaga, sagaMiddleware } from './middleware';
 
 const persistConfig = {
@@ -13,13 +14,13 @@ const persistConfig = {
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
-export const persistProvider = () => {
-  const store = createStore(persistedReducer, applyMiddleware(sagaMiddleware));
-  const persistor = persistStore(store);
-  sagaMiddleware.run(rootSaga);
-  return { store, persistor };
-};
+export const store = createStore(persistedReducer, applyMiddleware(sagaMiddleware));
+export const persistor = persistStore(store);
+sagaMiddleware.run(rootSaga);
+
+export type RootState = ReturnType<typeof store.getState>;
 
 export interface ConfigState {
   user: User;
+  companies: CompanyData;
 }

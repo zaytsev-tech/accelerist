@@ -1,14 +1,27 @@
-import { FC, useContext } from 'react';
+import { FC, useContext, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import styled, { ThemeContext } from 'styled-components';
 
+import { getCompanies } from '../../../store/ducks/companies/actions';
+import { CompanyData } from '../../../store/ducks/companies/types';
 import { IconClose, IconSearch, IconSettings } from '../../ui/icons';
 import { Pagination } from '../../ui/pagination';
 import { SettingItem } from '../../ui/setting-item/setting-item';
 import { CardOrganization } from '../../use-case/card-organization';
 import { Navigation } from '../../use-case/navigation';
 
+interface CompaniesItems {
+  companies: CompanyData;
+}
+
 export const Search: FC = () => {
   const theme = useContext(ThemeContext);
+  const companies = useSelector((state: CompaniesItems) => state.companies.items);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getCompanies());
+  }, []);
   return (
     <Page>
       <Navigation titlePage="Search" />
@@ -34,12 +47,9 @@ export const Search: FC = () => {
           <Pagination />
         </HeaderItems>
         <Cards>
-          <CardOrganization />
-          <CardOrganization />
-          <CardOrganization />
-          <CardOrganization />
-          <CardOrganization />
-          <CardOrganization />
+          {Object.values(companies).map((value) => {
+            return <CardOrganization key={value.id} item={value} />;
+          })}
         </Cards>
       </Content>
     </Page>

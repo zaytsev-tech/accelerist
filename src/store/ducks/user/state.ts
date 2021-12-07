@@ -18,4 +18,5 @@ export const initialProfile = {
     updatedAt: '2021-12-04T18:06:58.359Z',
     deletedAt: null,
   },
+  isAuthorized: false,
 };

@@ -36,13 +36,7 @@ export const AccountingServices = () => {
           </Settings>
           <Pagination />
         </HeaderItems>
-        <Cards>
-          <CardOrganization />
-          <CardOrganization />
-          <CardOrganization />
-          <CardOrganization />
-          <CardOrganization />
-        </Cards>
+        <Cards></Cards>
       </Content>
     </Page>
   );

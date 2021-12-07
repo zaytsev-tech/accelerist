@@ -2,8 +2,8 @@ import { PayloadAction } from '@reduxjs/toolkit';
 import { AxiosResponse } from 'axios';
 import { call, put, takeLatest } from 'redux-saga/effects';
 
-import { postUserLogin } from '../../api/user';
-import { postRegistration } from '../../api/user/user-api';
+import { postUserLogin } from '../../../api/user';
+import { postRegistration } from '../../../api/user/user-api';
 import { UserActions } from './actions';
 import { setError, setLogin } from './slice';
 import { AuthData, Profile } from './types';

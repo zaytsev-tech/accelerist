@@ -4,7 +4,7 @@ export const routes = {
   },
   search: {
     root: '/search',
-    corporateProfile: '/search/corporate-profile',
+    corporateProfile: `/search/corporate-profile/:id`,
   },
   favorites: {
     root: '/favorites',

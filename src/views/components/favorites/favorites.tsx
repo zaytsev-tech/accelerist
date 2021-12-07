@@ -1,11 +1,18 @@
 import { FC } from 'react';
+import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 
+import { CompanyData } from '../../../store/ducks/companies/types';
 import { Pagination } from '../../ui/pagination';
 import { CardOrganization } from '../../use-case/card-organization';
 import { Navigation } from '../../use-case/navigation';
 
+interface CompaniesItems {
+  companies: CompanyData;
+}
+
 export const Favorites: FC = () => {
+  const companies = useSelector((state: CompaniesItems) => state.companies.items);
   return (
     <Page>
       <Navigation titlePage="Favorites" />
@@ -16,10 +23,11 @@ export const Favorites: FC = () => {
           <Pagination />
         </HeaderItems>
         <Cards>
-          <CardOrganization />
-          <CardOrganization />
-          <CardOrganization />
-          <CardOrganization />
+          {Object.values(companies).map((value) => {
+            if (value.like) {
+              return <CardOrganization key={value.id} item={value} />;
+            }
+          })}
         </Cards>
       </Content>
     </Page>

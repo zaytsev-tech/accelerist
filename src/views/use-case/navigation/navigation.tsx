@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styled, { ThemeContext } from 'styled-components';
 
-import { Profile, User } from '../../../store/user';
+import { Profile, User } from '../../../store/ducks/user';
 import { routes } from '../../routes';
 import { IconBurger, IconSearch, LogoIcon } from '../../ui/icons';
 import { NavItem } from '../../ui/nav-item';

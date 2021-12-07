@@ -1,8 +1,10 @@
 import { FC, useContext } from 'react';
-import { useNavigate } from 'react-router';
+import { useSelector } from 'react-redux';
+import { useNavigate, useParams } from 'react-router';
 import styled, { ThemeContext } from 'styled-components';
 
 import image from '../../../assets/images/companies/beko.png';
+import { CompanyData } from '../../../store/ducks/companies/types';
 import { routes } from '../../routes';
 import { DefaultButton } from '../../ui/buttons/default-button';
 import {
@@ -14,8 +16,18 @@ import {
 } from '../../ui/icons';
 import { Navigation } from '../../use-case/navigation';
 
+interface CompaniesItems {
+  companies: CompanyData;
+}
+
 export const CorporateProfile: FC = () => {
+  const companies = useSelector((state: CompaniesItems) => state.companies.items);
   const theme = useContext(ThemeContext);
+  const { id } = useParams();
+  console.log('compaies: ', companies);
+  console.log('id: ', id?.slice(3));
+  const item = companies[id?.slice(3) || '0'];
+  console.log('item: ', item);
   const navigate = useNavigate();
   return (
     <Page>
@@ -33,10 +45,21 @@ export const CorporateProfile: FC = () => {
           </Avatar>
           <CorporateDescription>
             <Title>
-              <p>Beko</p>
-              <IconHeart width={18} height={16} color={theme.colors.red} />
+              <p>{item.name}</p>
+              {item.like ? (
+                <IconHeart
+                  width={18}
+                  height={16}
+                  color={theme.colors.red}
+                  fill={theme.colors.red}
+                />
+              ) : (
+                <IconHeart width={18} height={16} color={theme.colors.red} />
+              )}
             </Title>
-            <Text>2464 Royal Ln. Mesa, New Jersey 45463</Text>
+            <Text>
+              {item.street} {item.city} {item.state} {item.country}
+            </Text>
           </CorporateDescription>
         </CorporateHeader>
         <CorporateContent>
@@ -44,13 +67,7 @@ export const CorporateProfile: FC = () => {
             <Description>
               <Title>Business Description Products</Title>
               <Subtitle>Description</Subtitle>
-              <p>
-                We are a national, award-winning nonprofit that provides the most flexible
-                and accountable funding for K-12 teachers and schools with our
-                proprietary, easy-to-use education fundraising platform. Through local
-                impact, our goal is to give every child the tools they deserve to succeed
-                in school.
-              </p>
+              <p>{item.descriptionList}</p>
             </Description>
             <Reported>
               <Subtitle>Reported</Subtitle>
@@ -59,11 +76,11 @@ export const CorporateProfile: FC = () => {
                   <tr>
                     <td>
                       <Text>Revenue Reported</Text>
-                      <Count>-</Count>
+                      <Count>{item.revenueRange}</Count>
                     </td>
                     <td>
                       <Text>Employees Reported</Text>
-                      <Count>-</Count>
+                      <Count>{item.employeeRange}</Count>
                     </td>
                   </tr>
                 </tbody>
@@ -78,15 +95,17 @@ export const CorporateProfile: FC = () => {
               <InfoBlock>
                 <ContactInfo>
                   <IconPlanet width={24} height={24} color={theme.colors.blue} />
-                  <p>ageliromir.com</p>
+                  <p>{item.website}</p>
                 </ContactInfo>
                 <ContactInfo>
                   <IconPhone width={20} height={20} color={theme.colors.blue} />
-                  <p>(702) 555-0122</p>
+                  <p>{item.phone}</p>
                 </ContactInfo>
                 <ContactInfo>
                   <IconMapPoint width={24} height={24} color={theme.colors.blue} />
-                  <p>4140 Parker Rd. Allentown, New Mexico 31134</p>
+                  <p>
+                    {item.street} {item.city} {item.state} {item.country}
+                  </p>
                 </ContactInfo>
               </InfoBlock>
             </Contacts>

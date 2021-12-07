@@ -1,0 +1,1 @@
+export { getAllCompanies } from './companies';
