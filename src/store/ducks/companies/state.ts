@@ -1,4 +1,6 @@
-export const initialCompany = {
+import { CompanyData } from './types';
+
+export const initialCompany: CompanyData = {
   items: {
     '0': {
       id: '0',
@@ -17,7 +19,7 @@ export const initialCompany = {
       employeeRange: '',
       primaryIndustry: [],
       revenue: '',
-      empleCount: 0,
+      employeeCount: 0,
       parentId: '',
       charitablePartners: [],
       employeeEngagementOpportunities: false,

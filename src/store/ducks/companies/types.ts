@@ -56,7 +56,7 @@ export interface CompanyDetails {
   loadZoomInfoDate?: null;
   errorLoadZoomInfoDate?: null;
   partnershipLink?: null;
-  employeeEngagementOpportunities: true;
+  employeeEngagementOpportunities: boolean;
   similarCompanies: Array<string>;
   favoriteCompanies: Array<CompanyIds>;
   score: number;
@@ -76,4 +76,9 @@ export interface Meta {
   itemsPerPage: string;
   totalPages: number;
   currentPage: string;
+}
+
+export interface LikeSwitcher {
+  id: string;
+  key: boolean;
 }

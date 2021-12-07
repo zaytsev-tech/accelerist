@@ -1,12 +1,23 @@
 import { FC, useContext } from 'react';
+import { useDispatch } from 'react-redux';
 import styled, { ThemeContext } from 'styled-components';
 
+import { getDislikeCompany } from '../../../../store/ducks/companies/actions';
 import { IconHeart } from '../../icons';
 
-export const ButtonHeartFill: FC = () => {
+interface ButtonHeartFillProps {
+  id: string;
+}
+
+export const ButtonHeartFill: FC<ButtonHeartFillProps> = ({ id }) => {
   const theme = useContext(ThemeContext);
+  const dispatch = useDispatch();
+  function onClick() {
+    dispatch(getDislikeCompany(id));
+  }
+
   return (
-    <Block>
+    <Block onClick={onClick}>
       <IconHeart
         width={20}
         height={18}

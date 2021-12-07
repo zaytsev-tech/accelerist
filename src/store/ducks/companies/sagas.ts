@@ -1,10 +1,10 @@
+import { PayloadAction } from '@reduxjs/toolkit';
 import { AxiosResponse } from 'axios';
 import { call, put, takeLatest } from 'redux-saga/effects';
 
-import { getAllCompanies } from '../../../api/companies';
-import { getAllFavorites } from '../../../api/companies/companies';
+import { dislikeCompany, getAllCompanies, likeCompany } from '../../../api/companies';
 import { CompanyActions } from './actions';
-import { setCompanies, setError, setFavorites } from './slice';
+import { setCompanies, setDislike, setError, setLike } from './slice';
 import { CompanyData } from './types';
 
 function* getCompanies() {
@@ -21,10 +21,24 @@ function* getCompanies() {
   }
 }
 
-function* getFavorites() {
+function* getLike({ payload: value }: PayloadAction<string>) {
   try {
-    const response: AxiosResponse<CompanyData> = yield call(getAllFavorites);
-    yield put(setFavorites(response.data));
+    const response: AxiosResponse<boolean> = yield call(likeCompany, value);
+    yield put(setLike({ id: value, key: response.data }));
+  } catch (e) {
+    if (e instanceof Error) {
+      yield put(setError(e.message));
+    } else {
+      console.log('Error: ', e);
+      yield put(setError('unknown message'));
+    }
+  }
+}
+
+function* getDislike({ payload: value }: PayloadAction<string>) {
+  try {
+    const response: AxiosResponse<boolean> = yield call(dislikeCompany, value);
+    yield put(setDislike({ id: value, key: response.data }));
   } catch (e) {
     if (e instanceof Error) {
       yield put(setError(e.message));
@@ -37,5 +51,6 @@ function* getFavorites() {
 
 export function* watcherCompanies() {
   yield takeLatest(CompanyActions.getCompanies, getCompanies);
-  yield takeLatest(CompanyActions.getFavorites, getFavorites);
+  yield takeLatest(CompanyActions.getLikeCompany, getLike);
+  yield takeLatest(CompanyActions.getDislikeCompany, getDislike);
 }

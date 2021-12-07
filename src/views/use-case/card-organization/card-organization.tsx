@@ -49,7 +49,7 @@ export const CardOrganization: FC<CardOrganizationProps> = ({ item }) => {
         </Description>
       </MainBlock>
       <Buttons>
-        {item.like ? <ButtonHeartFill /> : <ButtonHeartEmpty />}
+        {item.like ? <ButtonHeartFill id={item.id} /> : <ButtonHeartEmpty id={item.id} />}
         <ButtonProfile
           onClick={() => navigate(routes.search.corporateProfile + `${item.id}`)}
         />

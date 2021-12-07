@@ -1,1 +1,1 @@
-export { getAllCompanies } from './companies';
+export { getAllCompanies, likeCompany, dislikeCompany } from './companies';

@@ -7,6 +7,10 @@ export function getAllCompanies(): Promise<AxiosResponse<CompanyData>> {
   return apiUser.get('/api/v1/companies?page=1&limit=15');
 }
 
-export function getAllFavorites(): Promise<AxiosResponse<CompanyData>> {
-  return apiUser.get('/api/v1/companies/favorites?page=1&limit=15');
+export function likeCompany(id: string): Promise<AxiosResponse<boolean>> {
+  return apiUser.get(`/api/v1/companies/${id}/like`);
+}
+
+export function dislikeCompany(id: string): Promise<AxiosResponse<boolean>> {
+  return apiUser.get(`/api/v1/companies/${id}/dislike`);
 }
