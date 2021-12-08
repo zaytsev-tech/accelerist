@@ -4,7 +4,6 @@ import styled from 'styled-components';
 
 import image from '../../../assets/images/companies/beko.png';
 import { CompanyDetails } from '../../../store/ducks/companies/types';
-import { routes } from '../../routes';
 import { ButtonHeartEmpty } from '../../ui/buttons/button-heart-empty';
 import { ButtonHeartFill } from '../../ui/buttons/button-heart-fill';
 import { ButtonProfile } from '../../ui/buttons/button-profile';
@@ -51,7 +50,10 @@ export const CardOrganization: FC<CardOrganizationProps> = ({ item }) => {
       <Buttons>
         {item.like ? <ButtonHeartFill id={item.id} /> : <ButtonHeartEmpty id={item.id} />}
         <ButtonProfile
-          onClick={() => navigate(routes.search.corporateProfile + `${item.id}`)}
+          onClick={() => {
+            const url = `/search/corporate-profile/${item.id}`;
+            return navigate(url);
+          }}
         />
       </Buttons>
     </Container>
@@ -178,6 +180,10 @@ const CsrFocus = styled.div`
   @media (max-width: ${({ theme: { breakpoints } }) => breakpoints.body.tablet}) {
     border: none;
   }
+
+  & p:last-child {
+    margin: 0;
+  }
 `;
 
 const SpecTitle = styled.p`
@@ -193,12 +199,18 @@ const RevenueTitle = styled.p`
 
 const SpecInfo = styled.p`
   ${({ theme: { typography } }) => typography.body.footnoteSelect};
+  display: flex;
+  flex-direction: row;
+  margin: 0;
 `;
 
 const Revenue = styled.div`
   float: right;
   padding-bottom: 12px;
   margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: end;
 
   @media (max-width: ${({ theme: { breakpoints } }) => breakpoints.body.tablet}) {
     display: flex;

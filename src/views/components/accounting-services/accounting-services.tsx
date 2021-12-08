@@ -3,9 +3,7 @@ import styled from 'styled-components';
 import { ButtonDelete } from '../../ui/buttons/button-delete';
 import { ButtonEdit } from '../../ui/buttons/button-edit';
 import { FilterItem } from '../../ui/filter-item';
-import { Pagination } from '../../ui/pagination';
 import { SettingItem } from '../../ui/setting-item';
-import { CardOrganization } from '../../use-case/card-organization';
 import { Navigation } from '../../use-case/navigation';
 
 export const AccountingServices = () => {
@@ -34,7 +32,6 @@ export const AccountingServices = () => {
           <Settings>
             <SettingItem type="Export" />
           </Settings>
-          <Pagination />
         </HeaderItems>
         <Cards></Cards>
       </Content>

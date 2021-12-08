@@ -188,6 +188,9 @@ const Menu = styled.div`
   background-color: ${({ theme: { colors } }) => colors.white};
   border-radius: 6px;
   display: none;
+  position: absolute;
+  margin-top: 2%;
+  width: 7%;
   flex-direction: column;
   align-items: flex-start;
 `;

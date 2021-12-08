@@ -24,9 +24,8 @@ export const CorporateProfile: FC = () => {
   const companies = useSelector((state: CompaniesItems) => state.companies.items);
   const theme = useContext(ThemeContext);
   const { id } = useParams();
-  console.log('compaies: ', companies);
-  console.log('id: ', id?.slice(3));
-  const item = companies[id?.slice(3) || '0'];
+  console.log('params: ', useParams());
+  const item = companies[id || '0'];
   console.log('item: ', item);
   const navigate = useNavigate();
   return (

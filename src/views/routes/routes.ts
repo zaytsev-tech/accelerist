@@ -3,7 +3,7 @@ export const routes = {
     root: '/',
   },
   search: {
-    root: '/search',
+    root: '/search/',
     corporateProfile: `/search/corporate-profile/:id`,
   },
   favorites: {

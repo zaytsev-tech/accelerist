@@ -2,6 +2,7 @@ export interface CompanyData {
   items: Record<string, CompanyDetails>;
   meta: Meta;
   error: string;
+  isLoading: boolean;
 }
 
 export interface CompanyDetails {
@@ -81,4 +82,9 @@ export interface Meta {
 export interface LikeSwitcher {
   id: string;
   key: boolean;
+}
+
+export interface Pagination {
+  page: number;
+  limit: number;
 }

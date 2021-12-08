@@ -1,12 +1,16 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import { FC, useContext, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled, { ThemeContext } from 'styled-components';
 
 import { getCompanies } from '../../../store/ducks/companies/actions';
 import { CompanyData } from '../../../store/ducks/companies/types';
+import { usePageSearchParams, usePrevPagination } from '../../hooks';
+import { useNextPagination } from '../../hooks/use-next-pagination';
 import { IconClose, IconSearch, IconSettings } from '../../ui/icons';
 import { Pagination } from '../../ui/pagination';
 import { SettingItem } from '../../ui/setting-item/setting-item';
+import { Spinner } from '../../ui/spinner';
 import { CardOrganization } from '../../use-case/card-organization';
 import { Navigation } from '../../use-case/navigation';
 
@@ -16,12 +20,31 @@ interface CompaniesItems {
 
 export const Search: FC = () => {
   const theme = useContext(ThemeContext);
+  const [search, originalRouteSearch] = usePageSearchParams();
+  const [, setSearch] = originalRouteSearch;
   const companies = useSelector((state: CompaniesItems) => state.companies.items);
+  const isLoading = useSelector((state: CompaniesItems) => state.companies.isLoading);
+  const totalItems = useSelector(
+    (state: CompaniesItems) => state.companies.meta.totalItems,
+  );
+  const totalPages = useSelector(
+    (state: CompaniesItems) => state.companies.meta.totalPages,
+  );
+  const page = Number(search.page) || 1;
+  const limit = Number(search.limit) || 15;
   const dispatch = useDispatch();
 
+  function nextPagination() {
+    useNextPagination({ page, limit, totalPages, setSearch });
+  }
+
+  function prevPagination() {
+    usePrevPagination({ page, limit, setSearch });
+  }
+
   useEffect(() => {
-    dispatch(getCompanies());
-  }, []);
+    dispatch(getCompanies({ page, limit: 15 }));
+  }, [limit, page, dispatch]);
   return (
     <Page>
       <Navigation titlePage="Search" />
@@ -37,20 +60,30 @@ export const Search: FC = () => {
         </SearchContainer>
       </Header>
       <Content>
-        <Title>Found 2054 companies</Title>
+        <Title>Found {totalItems} companies</Title>
         <HeaderItems>
           <Settings>
             <SettingItem type="Save" />
             <SettingItem type="Export" />
             <SettingItem type="Mail" />
           </Settings>
-          <Pagination />
+          <Pagination
+            next={nextPagination}
+            prev={prevPagination}
+            page={page}
+            limit={limit}
+            scorePages={totalPages}
+          />
         </HeaderItems>
-        <Cards>
-          {Object.values(companies).map((value) => {
-            return <CardOrganization key={value.id} item={value} />;
-          })}
-        </Cards>
+        {isLoading ? (
+          <Spinner />
+        ) : (
+          <Cards>
+            {Object.values(companies).map((value) => {
+              return <CardOrganization key={value.id} item={value} />;
+            })}
+          </Cards>
+        )}
       </Content>
     </Page>
   );

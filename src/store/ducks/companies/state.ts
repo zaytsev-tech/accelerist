@@ -32,4 +32,5 @@ export const initialCompany: CompanyData = {
   },
   meta: { totalItems: 0, itemCount: 0, itemsPerPage: '', totalPages: 0, currentPage: '' },
   error: '',
+  isLoading: false,
 };
