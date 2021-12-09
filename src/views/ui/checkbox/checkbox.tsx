@@ -24,7 +24,7 @@ const Container = styled.div`
     vertical-align: bottom;
     width: 15px;
     height: 15px;
-    margin-right: 10px;
+    margin-right: 0px;
     border-radius: 10%;
     border: 1px solid ${({ theme: { colors } }) => colors.grayCheckbox};
     flex-shrink: 0;

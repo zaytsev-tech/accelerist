@@ -30,6 +30,7 @@ function* getCompanies({ payload: value }: PayloadAction<Pagination>) {
 
 function* getFavorites({ payload: value }: PayloadAction<Pagination>) {
   try {
+    yield put(setLoading());
     const { page, limit } = value;
     const response: AxiosResponse<CompanyData> = yield call(getAllFavorites, page, limit);
     yield put(setCompanies(response.data));

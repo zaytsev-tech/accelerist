@@ -14,7 +14,7 @@ export function getAllFavorites(
   page: number,
   limit: number,
 ): Promise<AxiosResponse<CompanyData>> {
-  return apiUser.get(`/api/v1/companies?favorites=${page}&limit=${limit}`);
+  return apiUser.get(`/api/v1/companies/favorites?page=${page}&limit=${limit}`);
 }
 
 export function likeCompany(id: string): Promise<AxiosResponse<boolean>> {

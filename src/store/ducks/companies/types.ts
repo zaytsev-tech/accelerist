@@ -30,10 +30,10 @@ export interface CompanyDetails {
   competitors?: null;
   subUnitIndustries?: null;
   primaryIndustry: Array<string>;
-  industries?: null;
+  industries?: string;
   revenue: string;
   employeeCount?: number;
-  annualContributions?: null;
+  annualContributions?: string;
   cashContributions?: null;
   inKindContributions?: null;
   employeeContributions?: null;
@@ -41,10 +41,10 @@ export interface CompanyDetails {
   parentName?: null;
   type?: null;
   sdgGoals?: Array<string>;
-  genders?: null;
-  income?: null;
-  age?: null;
-  ethnicity?: null;
+  genders?: string;
+  income?: Array<string>;
+  age?: Array<string>;
+  ethnicity?: Array<string>;
   nonprofit?: null;
   purchase?: null;
   affiliation?: null;
@@ -87,4 +87,18 @@ export interface LikeSwitcher {
 export interface Pagination {
   page: number;
   limit: number;
+}
+
+export interface FilterDetails {
+  industry: Array<string>;
+  location: Array<string>;
+  scope: string;
+  sdgGoals: string;
+  csrFocus: Array<string>;
+  totalAnnual: string;
+  minRevenue: number;
+  maxRevenue: number;
+  gender: string;
+  income: string;
+  age: string;
 }

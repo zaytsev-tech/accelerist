@@ -101,7 +101,7 @@ const Avatar = styled.div`
   box-sizing: border-box;
   border-radius: 6px;
   height: 137%;
-  flex-grow: 1;
+  flex-grow: 2;
 
   @media (max-width: ${({ theme: { breakpoints } }) => breakpoints.body.tablet}) {
     height: 94%;
@@ -141,6 +141,7 @@ const Title = styled.p`
 const Description = styled.div`
   flex-grow: 4;
   margin-left: 5%;
+  width: 70%;
 
   @media (max-width: ${({ theme: { breakpoints } }) => breakpoints.body.mobile}) {
     width: 50%;

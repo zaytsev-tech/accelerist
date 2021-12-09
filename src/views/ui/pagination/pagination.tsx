@@ -8,14 +8,20 @@ interface PaginationProps {
   initPage: number;
   initLimit: number;
   totalPages: number;
+  totalItems: number;
 }
 
-export const Pagination: FC<PaginationProps> = ({ initPage, initLimit, totalPages }) => {
+export const Pagination: FC<PaginationProps> = ({
+  initPage,
+  initLimit,
+  totalPages,
+  totalItems,
+}) => {
   const [, originalRouteSearch] = usePageSearchParams();
   const [, setSearch] = originalRouteSearch;
   const theme = useContext(ThemeContext);
-  const next = useNextPagination({ initPage, initLimit, totalPages });
-  const prev = usePrevPagination({ initPage, initLimit });
+  const next = useNextPagination({ initPage, initLimit, totalPages, totalItems });
+  const prev = usePrevPagination({ initPage, initLimit, totalItems });
   return (
     <Container>
       <Prev onClick={() => setSearch(prev)}>

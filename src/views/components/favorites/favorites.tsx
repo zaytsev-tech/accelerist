@@ -1,10 +1,12 @@
-import { FC } from 'react';
-import { useSelector } from 'react-redux';
+import { FC, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 
+import { getFavorites } from '../../../store/ducks/companies/actions';
 import { CompanyData } from '../../../store/ducks/companies/types';
 import { usePageSearchParams } from '../../hooks';
 import { Pagination } from '../../ui/pagination';
+import { Spinner } from '../../ui/spinner';
 import { CardOrganization } from '../../use-case/card-organization';
 import { Navigation } from '../../use-case/navigation';
 
@@ -14,6 +16,8 @@ interface CompaniesItems {
 
 export const Favorites: FC = () => {
   const companies = useSelector((state: CompaniesItems) => state.companies.items);
+  const isLoading = useSelector((state: CompaniesItems) => state.companies.isLoading);
+  const dispatch = useDispatch();
   const [search] = usePageSearchParams();
   const totalItems = useSelector(
     (state: CompaniesItems) => state.companies.meta.totalItems,
@@ -22,8 +26,11 @@ export const Favorites: FC = () => {
     (state: CompaniesItems) => state.companies.meta.totalPages,
   );
   const page = Number(search.page) || 1;
-  const limit = Number(search.limit) || 15;
+  const limit = Number(search.limit) || totalItems;
 
+  useEffect(() => {
+    dispatch(getFavorites({ page, limit: 15 }));
+  }, [limit, page, dispatch]);
   return (
     <Page>
       <Navigation titlePage="Favorites" />
@@ -31,14 +38,23 @@ export const Favorites: FC = () => {
       <Content>
         <HeaderItems>
           <Title>{totalItems} companies</Title>
-          <Pagination initPage={page} initLimit={limit} totalPages={totalPages} />
+          <Pagination
+            initPage={page}
+            initLimit={limit}
+            totalPages={totalPages}
+            totalItems={totalItems}
+          />
         </HeaderItems>
         <Cards>
-          {Object.values(companies).map((value) => {
-            if (value.like) {
-              return <CardOrganization key={value.id} item={value} />;
-            }
-          })}
+          {isLoading ? (
+            <Spinner />
+          ) : (
+            Object.values(companies).map((value) => {
+              if (value.like) {
+                return <CardOrganization key={value.id} item={value} />;
+              }
+            })
+          )}
         </Cards>
       </Content>
     </Page>
