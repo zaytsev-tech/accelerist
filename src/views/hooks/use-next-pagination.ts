@@ -1,31 +1,18 @@
-import { URLSearchParamsInit, useSearchParams } from 'react-router-dom';
-
 interface UsePaginationProps {
-  page: number;
-  limit: number;
+  initPage: number;
+  initLimit: number;
   totalPages: number;
-  setSearch: (
-    nextInit: URLSearchParamsInit,
-    navigateOptions?:
-      | {
-          replace?: boolean | undefined;
-          state?: [Record<string, string>, ReturnType<typeof useSearchParams>];
-        }
-      | undefined,
-  ) => void;
 }
 
 export function useNextPagination({
-  page,
-  limit,
+  initPage,
+  initLimit,
   totalPages,
-  setSearch,
 }: UsePaginationProps) {
-  if (limit + 15 <= totalPages) {
-    limit += 15;
-    page += 15;
-  } else {
-    limit = totalPages;
-  }
-  setSearch({ page: page.toString(), limit: limit.toString() });
+  const page = initPage;
+  const limit = initLimit;
+  return {
+    page: new Number(Math.min(page + 15, totalPages - 15)).toString(),
+    limit: new Number(Math.min(limit + 15, totalPages)).toString(),
+  };
 }

@@ -1,33 +1,30 @@
 import { FC, useContext } from 'react';
 import styled, { ThemeContext } from 'styled-components';
 
+import { useNextPagination, usePageSearchParams, usePrevPagination } from '../../hooks';
 import { IconArrowLeft, IconArrowRight } from '../icons';
 
 interface PaginationProps {
-  next: (page: number, limit: number) => void;
-  prev: (page: number, limit: number) => void;
-  page: number;
-  limit: number;
-  scorePages: number;
+  initPage: number;
+  initLimit: number;
+  totalPages: number;
 }
 
-export const Pagination: FC<PaginationProps> = ({
-  next,
-  prev,
-  page,
-  limit,
-  scorePages,
-}) => {
+export const Pagination: FC<PaginationProps> = ({ initPage, initLimit, totalPages }) => {
+  const [, originalRouteSearch] = usePageSearchParams();
+  const [, setSearch] = originalRouteSearch;
   const theme = useContext(ThemeContext);
+  const next = useNextPagination({ initPage, initLimit, totalPages });
+  const prev = usePrevPagination({ initPage, initLimit });
   return (
     <Container>
-      <Prev onClick={() => prev(page, limit)}>
+      <Prev onClick={() => setSearch(prev)}>
         <IconArrowLeft width={10} height={18} color={theme.colors.black} />
       </Prev>
       <Count>
-        {page}-{limit} of {scorePages}
+        {initPage}-{initLimit} of {totalPages}
       </Count>
-      <Next onClick={() => next(page, limit)}>
+      <Next onClick={() => setSearch(next)}>
         <IconArrowRight width={10} height={18} color={theme.colors.black} />
       </Next>
     </Container>

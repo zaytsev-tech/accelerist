@@ -1,12 +1,10 @@
-/* eslint-disable react-hooks/rules-of-hooks */
 import { FC, useContext, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled, { ThemeContext } from 'styled-components';
 
 import { getCompanies } from '../../../store/ducks/companies/actions';
 import { CompanyData } from '../../../store/ducks/companies/types';
-import { usePageSearchParams, usePrevPagination } from '../../hooks';
-import { useNextPagination } from '../../hooks/use-next-pagination';
+import { usePageSearchParams } from '../../hooks';
 import { IconClose, IconSearch, IconSettings } from '../../ui/icons';
 import { Pagination } from '../../ui/pagination';
 import { SettingItem } from '../../ui/setting-item/setting-item';
@@ -20,8 +18,7 @@ interface CompaniesItems {
 
 export const Search: FC = () => {
   const theme = useContext(ThemeContext);
-  const [search, originalRouteSearch] = usePageSearchParams();
-  const [, setSearch] = originalRouteSearch;
+  const [search] = usePageSearchParams();
   const companies = useSelector((state: CompaniesItems) => state.companies.items);
   const isLoading = useSelector((state: CompaniesItems) => state.companies.isLoading);
   const totalItems = useSelector(
@@ -33,14 +30,6 @@ export const Search: FC = () => {
   const page = Number(search.page) || 1;
   const limit = Number(search.limit) || 15;
   const dispatch = useDispatch();
-
-  function nextPagination() {
-    useNextPagination({ page, limit, totalPages, setSearch });
-  }
-
-  function prevPagination() {
-    usePrevPagination({ page, limit, setSearch });
-  }
 
   useEffect(() => {
     dispatch(getCompanies({ page, limit: 15 }));
@@ -67,13 +56,7 @@ export const Search: FC = () => {
             <SettingItem type="Export" />
             <SettingItem type="Mail" />
           </Settings>
-          <Pagination
-            next={nextPagination}
-            prev={prevPagination}
-            page={page}
-            limit={limit}
-            scorePages={totalPages}
-          />
+          <Pagination initPage={page} initLimit={limit} totalPages={totalPages} />
         </HeaderItems>
         {isLoading ? (
           <Spinner />

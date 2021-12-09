@@ -1,10 +1,9 @@
-/* eslint-disable react-hooks/rules-of-hooks */
 import { FC } from 'react';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 
 import { CompanyData } from '../../../store/ducks/companies/types';
-import { useNextPagination, usePageSearchParams, usePrevPagination } from '../../hooks';
+import { usePageSearchParams } from '../../hooks';
 import { Pagination } from '../../ui/pagination';
 import { CardOrganization } from '../../use-case/card-organization';
 import { Navigation } from '../../use-case/navigation';
@@ -15,8 +14,7 @@ interface CompaniesItems {
 
 export const Favorites: FC = () => {
   const companies = useSelector((state: CompaniesItems) => state.companies.items);
-  const [search, originalRouteSearch] = usePageSearchParams();
-  const [, setSearch] = originalRouteSearch;
+  const [search] = usePageSearchParams();
   const totalItems = useSelector(
     (state: CompaniesItems) => state.companies.meta.totalItems,
   );
@@ -26,28 +24,14 @@ export const Favorites: FC = () => {
   const page = Number(search.page) || 1;
   const limit = Number(search.limit) || 15;
 
-  function nextPagination() {
-    useNextPagination({ page, limit, totalPages, setSearch });
-  }
-
-  function prevPagination() {
-    usePrevPagination({ page, limit, setSearch });
-  }
-
   return (
     <Page>
       <Navigation titlePage="Favorites" />
       <Header>Favorites</Header>
       <Content>
         <HeaderItems>
-          <Title>{Object.values(companies).length} companies</Title>
-          <Pagination
-            next={nextPagination}
-            prev={prevPagination}
-            page={page}
-            limit={limit}
-            scorePages={totalItems}
-          />
+          <Title>{totalItems} companies</Title>
+          <Pagination initPage={page} initLimit={limit} totalPages={totalPages} />
         </HeaderItems>
         <Cards>
           {Object.values(companies).map((value) => {
