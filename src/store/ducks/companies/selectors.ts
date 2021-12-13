@@ -4,7 +4,7 @@ import { RootState } from '../../storage/persist';
 
 const selectCompanies = (store: RootState) => store.companies;
 
-export const selectIndustry = createSelector(
+export const selectCompanyItems = createSelector(
   selectCompanies,
   (companies) => companies.items,
 );

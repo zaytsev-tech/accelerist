@@ -1,21 +1,23 @@
-import { uniq } from 'lodash';
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import { Field, Form } from 'react-final-form';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 
-import { selectIndustry } from '../../../store/ducks/companies';
+import { selectCompanyItems } from '../../../store/ducks/companies';
 import { FilterDetails } from '../../../store/ducks/companies/types';
+import { useGettingIndustries, useGettingLocations, useSortMas } from '../../hooks';
 import { CheckBox } from '../../ui/checkbox';
 import { Input } from '../../ui/input';
+import { SelectInput } from '../../ui/select-input';
 
 export const FilterForm: FC = () => {
-  const companies = useSelector(selectIndustry);
-  const industries: Array<string> = [];
-  Object.values(companies).forEach((company) => {
-    industries.push(company.primaryIndustry[0]);
-  });
-  const uniqIndustries = uniq(industries);
+  const companies = useSelector(selectCompanyItems);
+  const industries: Array<string> = useGettingIndustries(companies);
+  const geographics: Array<string> = useGettingLocations(companies);
+  const [searchIndustry, setSearchIndustry] = useState('');
+  const [searchGeographic, setSearchGeographic] = useState('');
+  const sortIndustries = useSortMas(industries, searchIndustry);
+  const sortGeographics = useSortMas(geographics, searchGeographic);
   function onSubmit(values: FilterDetails) {
     console.log(values);
   }
@@ -46,28 +48,58 @@ export const FilterForm: FC = () => {
             <FilterItems>
               <ItemContainer>
                 <ItemTitle>Industry</ItemTitle>
-                <Input placeholder="Search" value="123" onChange={() => onSubmit} />
-                <ListCheckox>
-                  {uniqIndustries.map((industry) => (
+                <Input
+                  placeholder="Search"
+                  value={searchIndustry}
+                  onChange={(e) => setSearchIndustry(e.currentTarget.value)}
+                />
+                <ListCheckbox>
+                  {sortIndustries.map((industry) => (
                     <Field
                       name="industry"
                       key={industry}
                       render={({ input: { value, onChange } }) => (
-                        <CheckBoxContainer>
-                          <CheckBox title={value} onClick={() => onChange} />
-                          <p>{industry}</p>
-                        </CheckBoxContainer>
+                        <CheckBoxContainer
+                          id={industry}
+                          title={industry}
+                          className={CheckBoxContainer}
+                          onChange={() => onChange}
+                        />
                       )}
                     />
                   ))}
-                </ListCheckox>
+                </ListCheckbox>
               </ItemContainer>
               <ItemContainer>
                 <ItemTitle>Geographic location</ItemTitle>
+                <Input
+                  placeholder="Search"
+                  value={searchGeographic}
+                  onChange={(e) => setSearchGeographic(e.currentTarget.value)}
+                />
+                <ListCheckbox>
+                  {sortGeographics.map((location) => (
+                    <Field
+                      name="location"
+                      key={location}
+                      render={({ input: { value, onChange } }) => (
+                        <CheckBoxContainer
+                          id={location}
+                          title={location}
+                          className={CheckBoxContainer}
+                          onChange={() => onChange}
+                        />
+                      )}
+                    />
+                  ))}
+                </ListCheckbox>
+              </ItemContainer>
+              <ItemContainer>
+                <ItemTitle>Scope</ItemTitle>
                 <Field
-                  name="location"
+                  name="scope"
                   render={({ input: { value, onChange } }) => (
-                    <Input placeholder="Search" value={value} onChange={onChange} />
+                    <SelectInput name="scope" items={['Local']} />
                   )}
                 />
               </ItemContainer>
@@ -110,7 +142,7 @@ const HeaderContainer = styled.p`
 const ItemContainer = styled.div`
   padding-top: 15px;
   padding-right: 15px;
-  width: 50%;
+  width: 48.7%;
 `;
 
 const ItemTitle = styled.p`
@@ -120,6 +152,7 @@ const ItemTitle = styled.p`
 
 const FilterItems = styled.div`
   display: flex;
+  flex-wrap: wrap;
 `;
 
 const FilterButtons = styled.div``;
@@ -128,9 +161,15 @@ const Cancel = styled.button``;
 
 const Search = styled.button``;
 
-const ListCheckox = styled.div``;
+const ListCheckbox = styled.div`
+  height: 200px;
+  overflow: scroll;
+`;
 
-const CheckBoxContainer = styled.div`
+const CheckBoxContainer = styled(CheckBox)`
   display: flex;
   align-items: center;
+  & > label {
+    margin: 10px;
+  }
 `;

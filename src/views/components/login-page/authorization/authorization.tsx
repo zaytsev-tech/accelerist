@@ -46,9 +46,10 @@ export const Authorization: FC = () => {
                 <FormInput type="password" value={value} onChange={onChange} />
                 <ControlPass>
                   <Remember
+                    id="Remember"
                     className="Remember"
                     title="Remember"
-                    onClick={() => console.log('Remember')}
+                    onChange={() => console.log('Remember')}
                   />
                   <ForgotPass>Forgot Password?</ForgotPass>
                 </ControlPass>

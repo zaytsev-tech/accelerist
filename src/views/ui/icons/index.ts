@@ -3,6 +3,8 @@ export { LogoIn } from './in';
 export { IconSearch } from './search';
 export { IconArrowRight } from './arrow-right';
 export { IconArrowLeft } from './arrow-left';
+export { IconArrowDown } from './arrow-down';
+export { IconArrowUp } from './arrow-up';
 export { IconSettings } from './settings';
 export { IconClose } from './close';
 export { IconAddFolder } from './add-folder';
