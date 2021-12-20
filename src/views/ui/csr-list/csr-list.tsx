@@ -5,11 +5,15 @@ interface CsrListProps {
 }
 
 export const CsrList: FC<CsrListProps> = ({ list }) => {
-  return (
+  return list.length > 0 ? (
     <div>
       {Object.values(list).reduce((prev, curr) => {
         return prev + ' · ' + curr;
       })}
+    </div>
+  ) : (
+    <div>
+      <p>No information</p>
     </div>
   );
 };

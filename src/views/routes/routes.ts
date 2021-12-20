@@ -1,10 +1,10 @@
 export const routes = {
   dashboard: {
-    root: '/dashboard',
+    root: '/',
   },
   search: {
-    root: '/search',
-    corporateProfile: '/search/corporate-profile',
+    root: '/search/',
+    corporateProfile: `/search/corporate-profile/:id`,
   },
   favorites: {
     root: '/favorites',
@@ -14,5 +14,8 @@ export const routes = {
   },
   accountingServices: {
     root: '/accounting-services',
+  },
+  login: {
+    root: '/login',
   },
 };

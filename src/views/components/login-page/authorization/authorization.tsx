@@ -1,23 +1,29 @@
 import { FC } from 'react';
 import { Field, Form } from 'react-final-form';
-import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 
-import { routes } from '../../../routes';
+import { AuthData } from '../../../../store/ducks/user';
+import { loginRequest } from '../../../../store/ducks/user/actions';
 import { DefaultButton } from '../../../ui/buttons/default-button';
 import { CheckBox } from '../../../ui/checkbox';
 import { Input } from '../../../ui/input';
 
 const initialValue = {
   email: '',
-  pass: '',
+  password: '',
 };
 
 export const Authorization: FC = () => {
-  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const onSubmit = (value: AuthData) => {
+    dispatch(loginRequest(value));
+  };
+
   return (
     <Form
-      onSubmit={() => navigate(routes.dashboard.root)}
+      onSubmit={onSubmit}
       initialValues={initialValue}
       render={({ handleSubmit }) => (
         <>
@@ -33,24 +39,25 @@ export const Authorization: FC = () => {
           />
           <Field
             type="password"
-            name="pass"
+            name="password"
             render={({ input: { value, onChange } }) => (
               <>
                 <Label>Password</Label>
                 <FormInput type="password" value={value} onChange={onChange} />
                 <ControlPass>
                   <Remember
+                    id="Remember"
                     className="Remember"
                     title="Remember"
-                    onClick={() => console.log('Remember')}
+                    onChange={() => console.log('Remember')}
                   />
                   <ForgotPass>Forgot Password?</ForgotPass>
                 </ControlPass>
               </>
             )}
           />
-          <Submit onClick={handleSubmit}>
-            <DefaultButton title="Login" />
+          <Submit>
+            <DefaultButton title="Login" onClick={handleSubmit} />
           </Submit>
         </>
       )}

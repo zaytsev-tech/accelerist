@@ -2,13 +2,19 @@ import { FC } from 'react';
 
 import { IconProps } from './type';
 
-export const IconHeart: FC<IconProps> = ({ width, height, color, className }) => {
+export const IconHeart: FC<IconProps> = ({
+  width,
+  height,
+  color,
+  className,
+  fill = 'none',
+}) => {
   return (
     <svg
       className={className}
       width={width}
       height={height}
-      fill="none"
+      fill={fill}
       viewBox="0 0 20 18"
     >
       <path

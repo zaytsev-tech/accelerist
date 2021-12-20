@@ -1,7 +1,10 @@
 import { FC, useContext } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styled, { ThemeContext } from 'styled-components';
 
+import { Profile } from '../../../store/ducks/user';
+import { logoutRequest } from '../../../store/ducks/user/actions';
 import { routes } from '../../routes';
 import { IconBurger, IconSearch, LogoIcon } from '../../ui/icons';
 import { NavItem } from '../../ui/nav-item';
@@ -10,8 +13,18 @@ interface NavigationProps {
   titlePage: string;
 }
 
+interface UserProp {
+  user: Profile;
+}
+
 export const Navigation: FC<NavigationProps> = ({ titlePage }) => {
   const theme = useContext(ThemeContext);
+  const dispatch = useDispatch();
+  const profile = useSelector((state: UserProp) => state.user.user);
+  function clickLogout() {
+    dispatch(logoutRequest());
+  }
+
   return (
     <Header>
       <Icon className={Icon} width={170} height={40} color={theme.colors.black} />
@@ -38,10 +51,18 @@ export const Navigation: FC<NavigationProps> = ({ titlePage }) => {
         <InputSearch placeholder="Search" />
         <Loupe className={Loupe} width={15} height={15} color={theme.colors.grayDark} />
       </Search>
-      <User>
-        <Avatar />
-        <Username>No name</Username>
-      </User>
+      <UserProfile>
+        <MainProfile>
+          <Avatar />
+          <Username>
+            {profile.firstName} {profile.lastName}
+          </Username>
+        </MainProfile>
+        <Menu>
+          <MenuProfile>User Profile</MenuProfile>
+          <MenuLogout onClick={clickLogout}>Log out</MenuLogout>
+        </Menu>
+      </UserProfile>
       <Burger width={24} height={24} color={theme.colors.black} />
     </Header>
   );
@@ -111,13 +132,28 @@ const Loupe = styled(IconSearch)`
   left: 104%;
 `;
 
-const User = styled.div`
+const UserProfile = styled.div`
   margin: 0;
   display: inline-flex;
   float: right;
+  flex-direction: column;
 
   @media (max-width: ${({ theme: { breakpoints } }) => breakpoints.body.tablet}) {
     display: none;
+  }
+
+  & button {
+    border: none;
+    background-color: ${({ theme: { colors } }) => colors.white};
+    margin: 5%;
+    margin-top: 7%;
+    cursor: pointer;
+  }
+
+  &:hover {
+    & div {
+      display: flex;
+    }
   }
 `;
 
@@ -142,4 +178,26 @@ const Burger = styled(IconBurger)`
   @media (max-width: ${({ theme: { breakpoints } }) => breakpoints.body.tablet}) {
     display: block;
   }
+`;
+
+const MainProfile = styled.div`
+  display: flex;
+`;
+
+const Menu = styled.div`
+  background-color: ${({ theme: { colors } }) => colors.white};
+  border-radius: 6px;
+  display: none;
+  position: absolute;
+  margin-top: 2%;
+  width: 7%;
+  flex-direction: column;
+  align-items: flex-start;
+`;
+
+const MenuProfile = styled.button`
+  margin-bottom: 5px;
+`;
+const MenuLogout = styled.button`
+  color: ${({ theme: { colors } }) => colors.red};
 `;

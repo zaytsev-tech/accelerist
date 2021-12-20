@@ -1,7 +1,6 @@
 import { FC } from 'react';
 import styled from 'styled-components';
 
-import { Pagination } from '../../ui/pagination';
 import { SortItems } from '../../ui/sort-items';
 import { Navigation } from '../../use-case/navigation';
 import { Prospect } from '../../use-case/prospect';
@@ -17,7 +16,6 @@ export const SavedProspects: FC = () => {
             <SortTitle>Sort by</SortTitle>
             <SortItems />
           </Sort>
-          <Pagination />
         </HeaderItems>
         <Prospects>
           <Prospect />

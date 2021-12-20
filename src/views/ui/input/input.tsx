@@ -5,12 +5,25 @@ interface InputProps {
   value: string;
   onChange: (event: FormEvent<HTMLInputElement>) => void;
   className?: string;
+  placeholder?: string;
   type?: string;
 }
 
-export const Input: FC<InputProps> = ({ value, onChange, className, type }) => {
+export const Input: FC<InputProps> = ({
+  value,
+  onChange,
+  className,
+  placeholder,
+  type,
+}) => {
   return (
-    <Container type={type} value={value} onChange={onChange} className={className} />
+    <Container
+      type={type}
+      value={value}
+      onChange={onChange}
+      className={className}
+      placeholder={placeholder}
+    />
   );
 };
 
