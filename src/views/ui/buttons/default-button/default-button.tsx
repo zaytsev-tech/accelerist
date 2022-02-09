@@ -3,10 +3,11 @@ import styled from 'styled-components';
 
 interface DefaultButtonProps {
   title: string;
+  onClick?: () => void;
 }
 
-export const DefaultButton: FC<DefaultButtonProps> = ({ title }) => {
-  return <Button>{title}</Button>;
+export const DefaultButton: FC<DefaultButtonProps> = ({ title, onClick }) => {
+  return <Button onClick={onClick}>{title}</Button>;
 };
 
 const Button = styled.button`

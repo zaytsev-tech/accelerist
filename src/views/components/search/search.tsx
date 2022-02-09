@@ -1,46 +1,77 @@
-import { FC, useContext } from 'react';
-import styled, { ThemeContext } from 'styled-components';
+import { FC, useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import styled from 'styled-components';
 
-import { IconClose, IconSearch, IconSettings } from '../../ui/icons';
+import { getCompanies } from '../../../store/ducks/companies/actions';
+import { CompanyData } from '../../../store/ducks/companies/types';
+import { usePageSearchParams } from '../../hooks';
+import { InputSearch } from '../../ui/input-search';
 import { Pagination } from '../../ui/pagination';
 import { SettingItem } from '../../ui/setting-item/setting-item';
+import { Spinner } from '../../ui/spinner';
 import { CardOrganization } from '../../use-case/card-organization';
+import { FilterForm } from '../../use-case/filter-form';
 import { Navigation } from '../../use-case/navigation';
 
+interface CompaniesItems {
+  companies: CompanyData;
+}
+
 export const Search: FC = () => {
-  const theme = useContext(ThemeContext);
+  const [search] = usePageSearchParams();
+  const companies = useSelector((state: CompaniesItems) => state.companies.items);
+  const isLoading = useSelector((state: CompaniesItems) => state.companies.isLoading);
+  const totalItems = useSelector(
+    (state: CompaniesItems) => state.companies.meta.totalItems,
+  );
+  const totalPages = useSelector(
+    (state: CompaniesItems) => state.companies.meta.totalPages,
+  );
+  const page = Number(search.page) || 1;
+  const limit = Number(search.limit) || 15;
+  const [isFilter, setFilter] = useState(true);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getCompanies({ page, limit: 15 }));
+  }, [limit, page, dispatch]);
   return (
     <Page>
       <Navigation titlePage="Search" />
       <Header>
         <HeaderText>Search</HeaderText>
-        <SearchContainer>
-          <InputSearch placeholder="Search" />
-          <Icons>
-            <IconClose width={24} height={24} color={theme.colors.grayDark} />
-            <IconSettings width={24} height={24} color={theme.colors.grayDark} />
-            <IconSearch width={24} height={24} color={theme.colors.grayDark} />
-          </Icons>
-        </SearchContainer>
+        <InputSearch isActive={isFilter} setActive={() => setFilter(!isFilter)} />
       </Header>
       <Content>
-        <Title>Found 2054 companies</Title>
-        <HeaderItems>
-          <Settings>
-            <SettingItem type="Save" />
-            <SettingItem type="Export" />
-            <SettingItem type="Mail" />
-          </Settings>
-          <Pagination />
-        </HeaderItems>
-        <Cards>
-          <CardOrganization />
-          <CardOrganization />
-          <CardOrganization />
-          <CardOrganization />
-          <CardOrganization />
-          <CardOrganization />
-        </Cards>
+        {isFilter ? (
+          <FilterForm />
+        ) : (
+          <>
+            <Title>Found {totalItems} companies</Title>
+            <HeaderItems>
+              <Settings>
+                <SettingItem type="Save" />
+                <SettingItem type="Export" />
+                <SettingItem type="Mail" />
+              </Settings>
+              <Pagination
+                initPage={page}
+                initLimit={limit}
+                totalPages={totalPages}
+                totalItems={totalItems}
+              />
+            </HeaderItems>
+            {isLoading ? (
+              <Spinner />
+            ) : (
+              <Cards>
+                {Object.values(companies).map((value) => {
+                  return <CardOrganization key={value.id} item={value} />;
+                })}
+              </Cards>
+            )}
+          </>
+        )}
       </Content>
     </Page>
   );
@@ -83,38 +114,6 @@ const Content = styled.div`
   @media (max-width: ${({ theme: { breakpoints } }) => breakpoints.body.tablet}) {
     padding: 32px;
   }
-`;
-
-const SearchContainer = styled.div`
-  display: flex;
-  position: relative;
-  margin-right: 30%;
-  flex-grow: 3;
-
-  @media (max-width: ${({ theme: { breakpoints } }) => breakpoints.body.tablet}) {
-    margin-right: 0;
-  }
-
-  @media (max-width: ${({ theme: { breakpoints } }) => breakpoints.body.mobile}) {
-    width: 100%;
-  }
-`;
-
-const InputSearch = styled.input`
-  background-color: ${({ theme: { colors } }) => colors.grayBgInput};
-  padding: 10px 24px;
-  border-radius: 6px;
-  width: 100%;
-  border: none;
-`;
-
-const Icons = styled.div`
-  position: absolute;
-  display: flex;
-  margin-top: 0.5%;
-  justify-content: space-around;
-  width: 12%;
-  left: 87%;
 `;
 
 const Title = styled.p`

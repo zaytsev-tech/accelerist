@@ -3,12 +3,17 @@ import { useNavigate } from 'react-router';
 import styled from 'styled-components';
 
 import image from '../../../assets/images/companies/beko.png';
-import { routes } from '../../routes';
+import { CompanyDetails } from '../../../store/ducks/companies/types';
 import { ButtonHeartEmpty } from '../../ui/buttons/button-heart-empty';
+import { ButtonHeartFill } from '../../ui/buttons/button-heart-fill';
 import { ButtonProfile } from '../../ui/buttons/button-profile';
 import { CsrList } from '../../ui/csr-list';
 
-export const CardOrganization: FC = () => {
+interface CardOrganizationProps {
+  item: CompanyDetails;
+}
+
+export const CardOrganization: FC<CardOrganizationProps> = ({ item }) => {
   const navigate = useNavigate();
   return (
     <Container>
@@ -17,32 +22,39 @@ export const CardOrganization: FC = () => {
           <Picture></Picture>
           <Ranking>
             <Text>Priority Ranking</Text>
-            <Title>4</Title>
+            <Title>{item.score}</Title>
           </Ranking>
         </Avatar>
         <Description>
-          <Title>Beko</Title>
+          <Title>{item.name}</Title>
           <Contacts>
-            <Text>2464 Royal Ln. Mesa, New Jersey 45463</Text>
-            <Text>(702) 555-0122</Text>
+            <Text>
+              {item.street} {item.city} {item.state} {item.country}
+            </Text>
+            <Text>{item.phone}</Text>
           </Contacts>
           <Specifications>
             <CsrFocus>
               <SpecTitle>CSR Focus</SpecTitle>
               <SpecInfo>
-                <CsrList list={['Health', 'Animals', 'Education']} />
+                <CsrList list={item.crsFocus} />
               </SpecInfo>
             </CsrFocus>
             <Revenue>
               <RevenueTitle>Revenue</RevenueTitle>
-              <SpecInfo>$ 434 476</SpecInfo>
+              <SpecInfo>$ {item.revenue}</SpecInfo>
             </Revenue>
           </Specifications>
         </Description>
       </MainBlock>
       <Buttons>
-        <ButtonHeartEmpty />
-        <ButtonProfile onClick={() => navigate(routes.search.corporateProfile)} />
+        {item.like ? <ButtonHeartFill id={item.id} /> : <ButtonHeartEmpty id={item.id} />}
+        <ButtonProfile
+          onClick={() => {
+            const url = `/search/corporate-profile/${item.id}`;
+            return navigate(url);
+          }}
+        />
       </Buttons>
     </Container>
   );
@@ -89,7 +101,7 @@ const Avatar = styled.div`
   box-sizing: border-box;
   border-radius: 6px;
   height: 137%;
-  flex-grow: 1;
+  flex-grow: 2;
 
   @media (max-width: ${({ theme: { breakpoints } }) => breakpoints.body.tablet}) {
     height: 94%;
@@ -129,6 +141,7 @@ const Title = styled.p`
 const Description = styled.div`
   flex-grow: 4;
   margin-left: 5%;
+  width: 70%;
 
   @media (max-width: ${({ theme: { breakpoints } }) => breakpoints.body.mobile}) {
     width: 50%;
@@ -168,6 +181,10 @@ const CsrFocus = styled.div`
   @media (max-width: ${({ theme: { breakpoints } }) => breakpoints.body.tablet}) {
     border: none;
   }
+
+  & p:last-child {
+    margin: 0;
+  }
 `;
 
 const SpecTitle = styled.p`
@@ -183,12 +200,18 @@ const RevenueTitle = styled.p`
 
 const SpecInfo = styled.p`
   ${({ theme: { typography } }) => typography.body.footnoteSelect};
+  display: flex;
+  flex-direction: row;
+  margin: 0;
 `;
 
 const Revenue = styled.div`
   float: right;
   padding-bottom: 12px;
   margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: end;
 
   @media (max-width: ${({ theme: { breakpoints } }) => breakpoints.body.tablet}) {
     display: flex;

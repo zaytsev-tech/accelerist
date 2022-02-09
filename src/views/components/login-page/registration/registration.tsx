@@ -1,22 +1,27 @@
 import { FC } from 'react';
 import { Field, Form } from 'react-final-form';
-import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 
-import { routes } from '../../../routes';
+import { AuthData } from '../../../../store/ducks/user';
+import { regRequest } from '../../../../store/ducks/user/actions';
 import { DefaultButton } from '../../../ui/buttons/default-button';
 import { Input } from '../../../ui/input';
 
 const initialValue = {
   email: '',
-  pass: '',
+  password: '',
 };
 
 export const Registration: FC = () => {
-  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const onSubmit = (values: AuthData) => {
+    dispatch(regRequest(values));
+  };
   return (
     <Form
-      onSubmit={() => navigate(routes.dashboard.root)}
+      onSubmit={onSubmit}
       initialValues={initialValue}
       render={({ handleSubmit }) => (
         <>
@@ -32,7 +37,7 @@ export const Registration: FC = () => {
           />
           <Field
             type="password"
-            name="pass"
+            name="password"
             render={({ input: { value, onChange } }) => (
               <>
                 <Label>Password</Label>

@@ -2,16 +2,30 @@ import { FC } from 'react';
 import styled from 'styled-components';
 
 interface CheckBoxProps {
-  title: string;
-  onClick: () => void;
+  id: string;
+  value: string | number;
+  onChange?: (e: any) => void;
+  onClick?: (e: any) => void;
   className?: string;
 }
 
-export const CheckBox: FC<CheckBoxProps> = ({ title, onClick, className }) => {
+export const CheckBox: FC<CheckBoxProps> = ({
+  id,
+  value,
+  onChange,
+  onClick,
+  className,
+}) => {
   return (
     <Container className={className}>
-      <Input id="checkbox" type="checkbox" onClick={() => onClick} />
-      <Title htmlFor="checkbox">{title}</Title>
+      <Input
+        type="checkbox"
+        id={id}
+        onChange={onChange}
+        onClick={onClick}
+        value={value}
+      />
+      <Title htmlFor={id}>{value}</Title>
     </Container>
   );
 };
@@ -24,8 +38,9 @@ const Container = styled.div`
     vertical-align: bottom;
     width: 15px;
     height: 15px;
-    margin-right: 10px;
+    margin-right: 0px;
     border-radius: 10%;
+    margin-right: 10px;
     border: 1px solid ${({ theme: { colors } }) => colors.grayCheckbox};
     flex-shrink: 0;
 

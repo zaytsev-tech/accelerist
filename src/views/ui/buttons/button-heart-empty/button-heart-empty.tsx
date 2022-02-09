@@ -1,12 +1,22 @@
 import { FC, useContext } from 'react';
+import { useDispatch } from 'react-redux';
 import styled, { ThemeContext } from 'styled-components';
 
+import { getLikeCompany } from '../../../../store/ducks/companies/actions';
 import { IconHeart } from '../../icons';
 
-export const ButtonHeartEmpty: FC = () => {
+interface ButtonHeartEmptyProps {
+  id: string;
+}
+
+export const ButtonHeartEmpty: FC<ButtonHeartEmptyProps> = ({ id }) => {
   const theme = useContext(ThemeContext);
+  const dispatch = useDispatch();
+  function onClick() {
+    dispatch(getLikeCompany(id));
+  }
   return (
-    <Block>
+    <Block onClick={onClick}>
       <IconHeart width={20} height={18} color={theme.colors.red} />
     </Block>
   );
