@@ -1,9 +1,10 @@
 import { FC, useState } from 'react';
 import { Field, Form } from 'react-final-form';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 
 import { selectCompanyItems } from '../../../store/ducks/companies';
+import { getFilteredCompanies } from '../../../store/ducks/companies/actions';
 import { FilterDetails } from '../../../store/ducks/companies/types';
 import { useGettingIndustries, useGettingLocations, useSortMas } from '../../hooks';
 import { CheckBox } from '../../ui/checkbox';
@@ -11,7 +12,11 @@ import { Input } from '../../ui/input';
 import { RangeSlider } from '../../ui/range-slider';
 import { SelectInput } from '../../ui/select-input';
 
-export const FilterForm: FC = () => {
+interface FilterFormProps {
+  onHandleSubmit: () => void;
+}
+
+export const FilterForm: FC<FilterFormProps> = ({ onHandleSubmit }) => {
   const companies = useSelector(selectCompanyItems);
   const industries: Array<string> = useGettingIndustries(companies);
   const geographics: Array<string> = useGettingLocations(companies);
@@ -19,8 +24,10 @@ export const FilterForm: FC = () => {
   const [searchGeographic, setSearchGeographic] = useState('');
   const sortIndustries = useSortMas(industries, searchIndustry);
   const sortGeographics = useSortMas(geographics, searchGeographic);
+  const dispatch = useDispatch();
   function onSubmit(values: FilterDetails) {
-    console.log(values);
+    dispatch(getFilteredCompanies(values));
+    onHandleSubmit();
   }
 
   const initialValue = {
