@@ -29,7 +29,7 @@ export const Search: FC = () => {
   );
   const page = Number(search.page) || 1;
   const limit = Number(search.limit) || 15;
-  const [isFilter, setFilter] = useState(true);
+  const [isFilter, setFilter] = useState(false);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -44,7 +44,7 @@ export const Search: FC = () => {
       </Header>
       <Content>
         {isFilter ? (
-          <FilterForm />
+          <FilterForm onHandleSubmit={() => setFilter(false)} />
         ) : (
           <>
             <Title>Found {totalItems} companies</Title>

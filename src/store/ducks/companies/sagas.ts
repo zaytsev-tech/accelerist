@@ -36,6 +36,7 @@ function* getFilteredCompanies({ payload: value }: PayloadAction<FilterDetails>)
       getAllFilteredCompanies,
       value,
     );
+    console.log('resopnse: ', response);
     yield put(setCompanies(response.data));
   } catch (e) {
     if (e instanceof Error) {

@@ -14,7 +14,9 @@ export function getAllFilteredCompanies(
   props: FilterDetails,
 ): Promise<AxiosResponse<CompanyData>> {
   return apiUser.get(
-    `/api/v1/companies/favorites?page=${props.page}&limit=${props.limit}&`,
+    `/api/v1/companies/favorites?page=${props.page || 1}&limit=${
+      props.limit || 10
+    }&location=${props.location}`,
     { params: props.location },
   );
 }
